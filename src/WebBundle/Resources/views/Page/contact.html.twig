@@ -1,0 +1,17 @@
+{% extends "WebBundle:Page:default.html.twig" %}
+
+{% block content %}
+
+    {{ parent() }}
+
+    <form action="{{ path('contact') }}" {{ form_enctype(form) }} method="post" class="form-horizontal">
+        {{ bootstrap_set_style('horizontal') }}
+        <div class="form-body">
+            {{ form_row(form.email, {'label_col': 4, 'widget_col': 8}) }}
+            {{ form_row(form.subject, {'label_col': 4, 'widget_col': 8}) }}
+            {{ form_row(form.message, {'label_col': 4, 'widget_col': 8}) }}
+            {{ form_rest(form) }}
+        </div>
+        {{ ui_form_footer(form) }}
+
+{% endblock content %}

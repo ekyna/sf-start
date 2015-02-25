@@ -1,0 +1,94 @@
+#ekyna_admin:
+#    logo_path: "/bundles/web/img/admin-logo.png"
+#    resources:
+#        app:
+#            animation:
+#                entity: AppBundle\Entity\Animation
+#                controller: AppBundle\Controller\Admin\AnimationController
+#                repository: AppBundle\Entity\AnimationRepository
+#                event: AppBundle\Event\ExhibitorEvent
+#                form: AppBundle\Form\Type\AnimationType
+#                table: AppBundle\Table\Type\AnimationType
+#                parent: app.space
+#                templates:
+#                    "_form.html": "AppBundle:Admin/Animation:_form.html"
+#                    "show.html": "AppBundle:Admin/Animation:show.html"
+#    menus:
+#        content:
+#            label: ekyna_core.field.content
+#            icon: file
+#            position: 97
+#            entries:
+#                news:
+#                    route: app_news_admin_home
+#                    label: app.news.label.plural
+#                    resource: app.news
+
+ekyna_user:
+    templates:
+        email: 'WebBundle:Email:base.html.twig'
+    account:
+        enable: false
+
+ekyna_cms:
+    home_route: home
+    seo:
+        no_follow: true
+        no_index: true
+    page:
+        controllers:
+            default:
+                title: Par défault
+                value: AppBundle:App:default
+    menu:
+        roots:
+            main:
+                title: Menu principal
+                description: Barre de navigation principale du site.
+            footer:
+                title: Pied de page
+                description: Menu du pied de page.
+    cookie_consent:
+        enable: true
+        controller: AppBundle:App:default
+
+ekyna_core:
+    cache:
+        default_smaxage: 3600
+        tag:
+            secret: %secret%
+            encode: true
+#    ui:
+#        google_font_url: "http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
+#        tinymce_formats:
+#            0:
+#                title: "Colors"
+#                items:
+#                    - {title: "Bordeau", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "bordeau"}
+#                    - {title: "Vert", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "vert"}
+#                    - {title: "Bleu", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "bleu"}
+#                    - {title: "Orange", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "orange"}
+    assets:
+        content_css:
+            inputs:
+                - "@bootstrap_css"
+                - "@WebBundle/Resources/asset/css/content.css"
+        bootstrap_css:
+            inputs:
+                - "@WebBundle/Resources/asset/less/bootstrap.less"
+                - "%kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/less/form.less"
+        bootstrap_js:
+            plugins:
+                transition: true
+                alert: true
+                button: true
+                carousel: true
+                collapse: true
+                dropdown: true
+                modal: true
+                tooltip: true
+                popover: true
+                scrollspy: true
+                tab: true
+                affix: true
+

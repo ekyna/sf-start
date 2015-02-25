@@ -1,0 +1,39 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    templating:
+        assets_base_urls: "%assets_base_urls%"
+    validation:
+        cache: apc
+
+doctrine:
+    orm:
+        metadata_cache_driver: apc
+        result_cache_driver: apc
+        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      grouped
+        grouped:
+            type:    group
+            members: [streamed, buffered]
+        streamed:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        buffered:
+            type:    buffer
+            handler: swift
+        swift:
+            type:       swift_mailer
+            from_email: "%mailer_user%"
+            to_email:   "%error_report_mail%"
+            subject:    "%kernel.logs_dir% : An Error Occurred!"
+            level:      error
+        console:
+            type:  console

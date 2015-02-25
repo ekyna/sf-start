@@ -1,0 +1,35 @@
+imports:
+    - { resource: config_dev.yml }
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+doctrine:
+    dbal:
+        dbname: "%database_name%_test"
+
+knp_gaufrette:
+    adapters:
+        local_image:
+            local:
+                directory:  "%kernel.root_dir%/../test/media/image"
+        local_file:
+            local:
+                directory:  "%kernel.root_dir%/../test/media/file"
+
+liip_imagine:
+    loaders:
+        local_image:
+            filesystem:
+                data_root: "%kernel.root_dir%/../test/media/image"

@@ -1,0 +1,33 @@
+app:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ekyna_cms:
+    resource: "@EkynaCmsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ekyna_sitemap:
+    resource: "@EkynaSitemapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ekyna_setting:
+    resource: "@EkynaSettingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ekyna_user:
+    resource: "@EkynaUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ekyna_admin:
+    resource: "@EkynaAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+ekyna_file_manager:
+    resource: "@EkynaFileManagerBundle/Resources/config/routing.yml"
+    prefix:   /filemanager
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

@@ -1,0 +1,38 @@
+parameters:
+    hostname:          ~
+
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     foiredebere.fr
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_port:       ~
+    mailer_encryption: ~
+    mailer_auth_mode:  ~
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            fr
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    cache:             file_system
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
+    reverse_proxy.enable: false
+    reverse_proxy.host: 127.0.0.1
+    reverse_proxy.port: 80
+
+    router.request_context.host: %hostname%
+    router.request_context.scheme: http
+    router.request_context.base_url: ~
+
+    assets_base_urls: //%hostname%/
+
+    error_report_mail: support@ekyna.com

@@ -1,0 +1,3 @@
+app_pages:
+    resource: "front/pages.yml"
+    prefix:   /
