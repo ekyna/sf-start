@@ -43,6 +43,8 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
+
             new AppBundle\AppBundle(),
             new WebBundle\WebBundle(),
         );
