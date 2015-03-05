@@ -844,12 +844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "058a4635ac9b80a5b1997df28a754e64b1425a1d"
+                "reference": "93a9369ea7846e8ae2e9303c94bb36dbcbb2009b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/058a4635ac9b80a5b1997df28a754e64b1425a1d",
-                "reference": "058a4635ac9b80a5b1997df28a754e64b1425a1d",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/93a9369ea7846e8ae2e9303c94bb36dbcbb2009b",
+                "reference": "93a9369ea7846e8ae2e9303c94bb36dbcbb2009b",
                 "shasum": ""
             },
             "require": {
@@ -894,7 +894,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2015-02-19 08:13:05"
+            "time": "2015-03-04 08:37:18"
         },
         {
             "name": "doctrine/orm",
@@ -976,12 +976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/AdminBundle.git",
-                "reference": "62b380ab37bb234db683fc5e50af15d6f806d874"
+                "reference": "68ee678dea53e5bcb110862126e6f8f95fe117be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/AdminBundle/zipball/62b380ab37bb234db683fc5e50af15d6f806d874",
-                "reference": "62b380ab37bb234db683fc5e50af15d6f806d874",
+                "url": "https://api.github.com/repos/ekyna/AdminBundle/zipball/68ee678dea53e5bcb110862126e6f8f95fe117be",
+                "reference": "68ee678dea53e5bcb110862126e6f8f95fe117be",
                 "shasum": ""
             },
             "require": {
@@ -1022,7 +1022,7 @@
                 "backend",
                 "bundle"
             ],
-            "time": "2015-02-26 17:40:09"
+            "time": "2015-03-05 15:04:42"
         },
         {
             "name": "ekyna/cms-bundle",
@@ -1082,12 +1082,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/CoreBundle.git",
-                "reference": "78542d4862e5f62ea766010c1eea206c18f493b7"
+                "reference": "ece48bd72f35969fa69f55d9bdaf09a46ff74122"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/CoreBundle/zipball/78542d4862e5f62ea766010c1eea206c18f493b7",
-                "reference": "78542d4862e5f62ea766010c1eea206c18f493b7",
+                "url": "https://api.github.com/repos/ekyna/CoreBundle/zipball/ece48bd72f35969fa69f55d9bdaf09a46ff74122",
+                "reference": "ece48bd72f35969fa69f55d9bdaf09a46ff74122",
                 "shasum": ""
             },
             "require": {
@@ -1143,7 +1143,7 @@
                 "Symfony2",
                 "bundle"
             ],
-            "time": "2015-02-25 21:45:47"
+            "time": "2015-03-05 15:04:26"
         },
         {
             "name": "ekyna/file-manager-bundle",
@@ -1502,12 +1502,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/UserBundle.git",
-                "reference": "b18d8279df0b76ead84fa249f775a42b581a0ef0"
+                "reference": "8a2d04853cece2f3a0224bf4217200329a091dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/UserBundle/zipball/b18d8279df0b76ead84fa249f775a42b581a0ef0",
-                "reference": "b18d8279df0b76ead84fa249f775a42b581a0ef0",
+                "url": "https://api.github.com/repos/ekyna/UserBundle/zipball/8a2d04853cece2f3a0224bf4217200329a091dc2",
+                "reference": "8a2d04853cece2f3a0224bf4217200329a091dc2",
                 "shasum": ""
             },
             "require": {
@@ -1545,7 +1545,7 @@
                 "bundle",
                 "user"
             ],
-            "time": "2015-02-26 17:40:26"
+            "time": "2015-03-05 15:04:56"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -2040,16 +2040,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "7.0.2",
+            "version": "7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "a27ea27bb74b0e3dbb57d27a4ffe2f6acf353b94"
+                "reference": "1d28ae5458baaf6bcad2ac5d773f6d593f02a6b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/a27ea27bb74b0e3dbb57d27a4ffe2f6acf353b94",
-                "reference": "a27ea27bb74b0e3dbb57d27a4ffe2f6acf353b94",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/1d28ae5458baaf6bcad2ac5d773f6d593f02a6b3",
+                "reference": "1d28ae5458baaf6bcad2ac5d773f6d593f02a6b3",
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2096,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2015-01-09 22:02:54"
+            "time": "2015-03-03 12:48:31"
         },
         {
             "name": "guzzle/common",
@@ -2782,12 +2782,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "12376684828a013acfdc20bc29a64155d07e0ddf"
+                "reference": "fcc3c3fbf1dd1899ad670b1412050fc57d821081"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/12376684828a013acfdc20bc29a64155d07e0ddf",
-                "reference": "12376684828a013acfdc20bc29a64155d07e0ddf",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/fcc3c3fbf1dd1899ad670b1412050fc57d821081",
+                "reference": "fcc3c3fbf1dd1899ad670b1412050fc57d821081",
                 "shasum": ""
             },
             "require": {
@@ -2856,7 +2856,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2014-08-19 13:42:49"
+            "time": "2015-03-03 11:30:54"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -3356,16 +3356,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1fbe8c2641f2b163addf49cc5e18f144bec6b19f"
+                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1fbe8c2641f2b163addf49cc5e18f144bec6b19f",
-                "reference": "1fbe8c2641f2b163addf49cc5e18f144bec6b19f",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c41c218e239b50446fd883acb1ecfd4b770caeae",
+                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae",
                 "shasum": ""
             },
             "require": {
@@ -3382,6 +3382,7 @@
                 "phpunit/phpunit": "~4.0",
                 "raven/raven": "~0.5",
                 "ruflin/elastica": "0.90.*",
+                "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
             },
             "suggest": {
@@ -3398,7 +3399,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12.x-dev"
+                    "dev-master": "1.13.x-dev"
                 }
             },
             "autoload": {
@@ -3424,7 +3425,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-12-29 21:29:35"
+            "time": "2015-03-05 01:12:12"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -3691,28 +3692,35 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v3.0.16",
+            "version": "v3.0.18",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa"
+                "reference": "ac026149ffb1d3a5c893290d2d3ca8795013de08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
-                "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ac026149ffb1d3a5c893290d2d3ca8795013de08",
+                "reference": "ac026149ffb1d3a5c893290d2d3ca8795013de08",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "sensiolabs/security-checker": "~2.0",
                 "symfony/class-loader": "~2.2",
-                "symfony/form": "~2.2",
                 "symfony/framework-bundle": "~2.3",
-                "symfony/process": "~2.2",
+                "symfony/process": "~2.2"
+            },
+            "require-dev": {
+                "symfony/form": "~2.2",
                 "symfony/validator": "~2.2",
                 "symfony/yaml": "~2.2"
+            },
+            "suggest": {
+                "symfony/form": "If you want to use the configurator",
+                "symfony/validator": "If you want to use the configurator",
+                "symfony/yaml": "If you want to use  the configurator"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -3740,7 +3748,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-02-01 05:42:21"
+            "time": "2015-02-27 12:59:18"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3849,7 +3857,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/TinymceBundle.git",
-                "reference": "aa0851cf214a28d6f6f140d87984170a863adefe"
+                "reference": "8748e3b354723c0c4fdc23c61412006ee3a0e7f0"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -3900,7 +3908,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2015-02-21 14:17:30"
+            "time": "2015-03-04 13:57:31"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -4369,19 +4377,34 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "4.1.7",
+            "version": "4.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "555fcfa1a09e93732a51950ba3d731050f31d39a"
+                "reference": "2ab950dc1e451967f51c4c4bfc4ed161f25e90c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/555fcfa1a09e93732a51950ba3d731050f31d39a",
-                "reference": "555fcfa1a09e93732a51950ba3d731050f31d39a",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/2ab950dc1e451967f51c4c4bfc4ed161f25e90c2",
+                "reference": "2ab950dc1e451967f51c4c4bfc4ed161f25e90c2",
                 "shasum": ""
             },
-            "type": "library",
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "tinymce.js",
+                        "plugins/*/plugin.js",
+                        "themes/*/theme.js"
+                    ],
+                    "files": [
+                        "tinymce.min.js",
+                        "plugins/*/plugin.min.js",
+                        "themes/*/theme.min.js",
+                        "skins/**"
+                    ]
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-2.1"
@@ -4396,7 +4419,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2014-11-27 13:24:16"
+            "time": "2015-03-05 13:01:35"
         },
         {
             "name": "twbs/bootstrap",
