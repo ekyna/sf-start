@@ -33,6 +33,6 @@ parameters:
     router.request_context.scheme: http
     router.request_context.base_url: ~
 
-    assets_base_urls: //%hostname%/
+    assets_base_urls: //%hostname%
 
     error_report_mail: support@ekyna.com

@@ -4,8 +4,12 @@ imports:
     - { resource: images.yml }
     - { resource: ekyna.yml }
 
+parameters:
+    session.attribute_bag.class: Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag
+    security.authentication.success_handler.class: Ekyna\Bundle\UserBundle\Authentication\AuthenticationSuccessHandler
+
 framework:
-    esi:             ~
+    esi:             { enabled: true }
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
@@ -16,7 +20,8 @@ framework:
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        #assets_version: SomeVersionScheme
+        assets_base_urls: { http: ["http:%assets_base_urls%"], ssl: ["https:%assets_base_urls%"] }
+        assets_version: v1.0
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ['127.0.0.1', '10.0.0.0/8']
@@ -24,6 +29,7 @@ framework:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
         cookie_lifetime: 86400
+        #cookie_httponly: false # To false if setting session via XMLHttpRequest
         #cookie_domain:   "%router.request_context.host%"
         gc_maxlifetime:  86400
     fragments:       { path: /_fragment }
@@ -42,6 +48,9 @@ assetic:
     java: /usr/bin/java
     filters:
         cssrewrite: ~
+        jpegoptim:
+            bin: /usr/bin/jpegoptim
+            strip_all: true
         less:
             node: node
             node_paths: [/usr/local/lib/node_modules]
@@ -50,6 +59,9 @@ assetic:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
         yui_js:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
+    twig:
+        functions:
+            jpegoptim: ~
 
 # Doctrine Configuration
 doctrine:
@@ -64,65 +76,11 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
-        types:
-            phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         entity_managers:
             default:
                 auto_mapping: true
-                dql:
-                    datetime_functions:
-                        month: Ekyna\Bundle\CoreBundle\Dql\Month
-                        year: Ekyna\Bundle\CoreBundle\Dql\Year
-                        day: Ekyna\Bundle\CoreBundle\Dql\Day
-                        rand: Ekyna\Bundle\CoreBundle\Dql\Rand
-                        unix_timestamp: Ekyna\Bundle\CoreBundle\Dql\UnixTimestamp
-
-# Doctrine Cache
-doctrine_cache:
-    providers:
-        ekyna_settings:
-            type: %cache%
-
-# FOS Elastica
-fos_elastica:
-    serializer: ~
-    clients:
-        default: { host: localhost, port: 9200 }
-    indexes:
-        search:
-            index_name: "%hostname%_%kernel.environment%"
-            settings:
-                index:
-                    analysis:
-                        tokenizer:
-                            nGram:
-                                type: nGram
-                                min_gram: 2
-                                max_gram: 20
-                        filter:
-                            fr_stop:
-                                type: stop
-                                stopwords: [_french_]
-                                ignore_case: true
-                            fr_elision:
-                                type: elision
-                                articles: [l, m, t, qu, n, s, j, d, c, jusqu, quoiqu, lorsqu, puisqu]
-                            fr_delimiter:
-                                type: word_delimiter
-                            fr_stemmer:
-                                type: stemmer
-                                language: light_french
-                        analyzer:
-                            fr_index:
-                                type: custom
-                                tokenizer: nGram
-                                filter: [fr_stop, asciifolding, lowercase, fr_elision, fr_delimiter, fr_stemmer]
-                            fr_search:
-                                type: custom
-                                tokenizer: standard
-                                filter: [fr_stop, asciifolding, lowercase, fr_elision, fr_delimiter, fr_stemmer]
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -134,31 +92,3 @@ swiftmailer:
     username:   "%mailer_user%"
     password:   "%mailer_password%"
     spool:     { type: memory }
-
-# Doctrine extensions
-stof_doctrine_extensions:
-    default_locale: "%locale%"
-    orm:
-        default:
-            tree: true
-            sluggable: true
-            timestampable: true
-            softdeleteable: true
-            sortable: true
-
-# KNP Gaufrette
-knp_gaufrette:
-    adapters:
-        local_image:
-            local:
-                directory:  "%kernel.root_dir%/../media/image"
-                create:     true
-        local_file:
-            local:
-                directory:  "%kernel.root_dir%/../media/file"
-                create:     true
-    filesystems:
-        local_image:
-            adapter: local_image
-        local_file:
-            adapter: local_file

@@ -33,3 +33,8 @@ liip_imagine:
         local_image:
             filesystem:
                 data_root: "%kernel.root_dir%/../test/media/image"
+
+fos_elastica:
+    indexes:
+        search:
+            index_name: %hostname%_test

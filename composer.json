@@ -65,7 +65,9 @@
     "prefer-stable": true,
     "config": {
         "bin-dir": "bin",
-        "optimize-autoloader" : true
+        "optimize-autoloader" : true,
+        "component-dir": "web/assets",
+        "component-baseurl": "/assets"
     },
     "extra": {
         "symfony-app-dir": "app",

@@ -33,6 +33,9 @@ if (isset($_ENV['BOOTSTRAP_CLEAR_CACHE_ENV'])) {
     // Create Schema
     runCommand('doctrine:schema:create');
 
+    // Elasticsearch reset
+    runCommand('fos:elastica:reset');
+
     // Bundles installation
     runCommand('ekyna:install');
 
