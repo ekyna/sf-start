@@ -9,15 +9,18 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             new Ekyna\Bundle\CmsBundle\EkynaCmsBundle(),
+            new Ekyna\Bundle\MediaBundle\EkynaMediaBundle(),
             new Ekyna\Bundle\SettingBundle\EkynaSettingBundle(),
-            new Ekyna\Bundle\AdminBundle\EkynaAdminBundle(),
             new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
             new Ekyna\Bundle\UserBundle\EkynaUserBundle(),
             new Ekyna\Bundle\FileManagerBundle\EkynaFileManagerBundle(),
             new Ekyna\Bundle\SitemapBundle\EkynaSitemapBundle(),
             new Ekyna\Bundle\InstallBundle\EkynaInstallBundle(),
-            new Ekyna\Bundle\CoreBundle\EkynaCoreBundle(),
+            new Ekyna\Bundle\RequireJsBundle\EkynaRequireJsBundle(),
             new Ekyna\Bundle\FontAwesomeBundle\EkynaFontAwesomeBundle(),
+
+            new Ekyna\Bundle\AdminBundle\EkynaAdminBundle(),
+            new Ekyna\Bundle\CoreBundle\EkynaCoreBundle(),
 
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
@@ -40,10 +43,13 @@ class AppKernel extends Kernel
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
 
             new AppBundle\AppBundle(),
             new WebBundle\WebBundle(),

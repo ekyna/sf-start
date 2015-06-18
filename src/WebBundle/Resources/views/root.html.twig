@@ -14,7 +14,6 @@
         {% stylesheets output='css/main.css' filter='cssrewrite, ?yui_css'
             'css/content.css'
             'css/fontawesome.css'
-            'css/core.css'
             '@WebBundle/Resources/asset/css/main.css'
         %}
         <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
@@ -22,6 +21,8 @@
     {%- endblock stylesheets %}
 
     {% include 'EkynaCoreBundle:Ui:ie-fix.html.twig' %}
+
+    {{ require_js(not app.debug) }}
 </head>
 <body>
     {% block body %}{% endblock body %}
@@ -31,23 +32,9 @@
     {% endblock footer %}
 
     {% block javascripts -%}
-        {% javascripts output='js/main.js' filter='?yui_js'
-            'js/jquery.js'
-            'js/bootstrap.js'
-            'js/core.js'
-            '@EkynaCmsBundle/Resources/asset/js/init.js'
-            '@WebBundle/Resources/asset/js/main.js'
-        %}
-        {% if app.environment == 'prod' %}
-            <script type="text/javascript">
-                var script = document.createElement('script');
-                script.src = "{{ asset_url }}";
-                document.getElementsByTagName('head')[0].appendChild(script);
-            </script>
-        {% else %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endif %}
-        {% endjavascripts %}
+        <script type="text/javascript">
+            require(['bundles/web/js/main']);
+        </script>
     {%- endblock javascripts %}
 </body>
 </html>

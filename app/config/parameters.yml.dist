@@ -4,7 +4,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     foiredebere.fr
+    database_name:     symfony
     database_user:     root
     database_password: ~
 
@@ -17,6 +17,7 @@ parameters:
     mailer_password:   ~
 
     locale:            fr
+    locales:           [fr, en]
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     cache:             file_system

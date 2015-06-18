@@ -17,7 +17,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "ekyna/cms-bundle": "0.1.x-dev"
+        "ekyna/cms-bundle": "0.3.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
@@ -37,10 +37,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Stfalcon\\Bundle\\TinymceBundle\\Composer\\ScriptHandler::install",
-            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install",
-            "Ekyna\\Bundle\\FontAwesomeBundle\\Composer\\ScriptHandler::install",
-            "Ekyna\\Bundle\\CoreBundle\\Composer\\ScriptHandler::install"
+            "Ekyna\\Bundle\\FontAwesomeBundle\\Composer\\ScriptHandler::install"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -49,16 +46,21 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Stfalcon\\Bundle\\TinymceBundle\\Composer\\ScriptHandler::install",
-            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install",
-            "Ekyna\\Bundle\\FontAwesomeBundle\\Composer\\ScriptHandler::install",
-            "Ekyna\\Bundle\\CoreBundle\\Composer\\ScriptHandler::install"
+            "Ekyna\\Bundle\\FontAwesomeBundle\\Composer\\ScriptHandler::install"
         ]
     },
     "repositories": [
         {
             "type": "git",
             "url": "https://github.com/ekyna/TinymceBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/ekyna/JMSI18nRoutingBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/ekyna/bootstrap3-dialog.git"
         }
     ],
     "minimum-stability": "dev",
@@ -76,7 +78,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "0.3.x-dev"
         }
     }
 }
