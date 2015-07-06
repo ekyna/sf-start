@@ -373,7 +373,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/bootstrap3-dialog.git",
-                "reference": "82c2b92b3433414c1685e13803de80ca54086650"
+                "reference": "b79ab0f79fa39eb63e42e94af253df9c112cdba0"
             },
             "require": {
                 "components/bootstrap": "3.*",
@@ -412,7 +412,7 @@
                 }
             ],
             "description": "Make use of Bootstrap Modal more monkey-friendly.",
-            "time": "2015-06-09 12:23:44"
+            "time": "2015-06-27 06:49:03"
         },
         {
             "name": "doctrine/annotations",
@@ -929,12 +929,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "e33e07137c43a492589e89d79d36807cbfcf28e0"
+                "reference": "861d3564c03b3867845ffd87d9b19f49dc673c69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/e33e07137c43a492589e89d79d36807cbfcf28e0",
-                "reference": "e33e07137c43a492589e89d79d36807cbfcf28e0",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/861d3564c03b3867845ffd87d9b19f49dc673c69",
+                "reference": "861d3564c03b3867845ffd87d9b19f49dc673c69",
                 "shasum": ""
             },
             "require": {
@@ -979,7 +979,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2015-06-15 17:47:52"
+            "time": "2015-06-16 12:48:54"
         },
         {
             "name": "doctrine/inflector",
@@ -1108,17 +1108,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "67f02686c6c779ae50489728b91026bc8199720c"
+                "reference": "70c580174e4e16a79296a02256fb40a34192731c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/67f02686c6c779ae50489728b91026bc8199720c",
-                "reference": "67f02686c6c779ae50489728b91026bc8199720c",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/70c580174e4e16a79296a02256fb40a34192731c",
+                "reference": "70c580174e4e16a79296a02256fb40a34192731c",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "~2.0",
-                "php": ">=5.3.2",
+                "doctrine/dbal": "~2.2",
+                "php": ">=5.4.0",
                 "symfony/console": "~2.3",
                 "symfony/yaml": "~2.3"
             },
@@ -1128,7 +1128,9 @@
             "require-dev": {
                 "doctrine/coding-standard": "dev-master",
                 "doctrine/orm": "2.*",
-                "phpunit/phpunit": "~4.0",
+                "johnkary/phpunit-speedtrap": "~1.0@dev",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "~4.7",
                 "satooshi/php-coveralls": "0.6.*"
             },
             "suggest": {
@@ -1165,7 +1167,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2015-06-01 21:18:20"
+            "time": "2015-06-29 10:57:05"
         },
         {
             "name": "doctrine/orm",
@@ -1247,12 +1249,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/AdminBundle.git",
-                "reference": "d3192b6f69e29c1117a3e77401790f15fbeb36c6"
+                "reference": "38b57127d4df0fe5d1b307be1e54a83a113fc71f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/AdminBundle/zipball/d3192b6f69e29c1117a3e77401790f15fbeb36c6",
-                "reference": "d3192b6f69e29c1117a3e77401790f15fbeb36c6",
+                "url": "https://api.github.com/repos/ekyna/AdminBundle/zipball/38b57127d4df0fe5d1b307be1e54a83a113fc71f",
+                "reference": "38b57127d4df0fe5d1b307be1e54a83a113fc71f",
                 "shasum": ""
             },
             "require": {
@@ -1291,7 +1293,7 @@
                 "backend",
                 "bundle"
             ],
-            "time": "2015-06-18 07:26:50"
+            "time": "2015-06-29 12:24:45"
         },
         {
             "name": "ekyna/cms-bundle",
@@ -1300,12 +1302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/CmsBundle.git",
-                "reference": "7cf276ca2323d27add0f8e246e24ac8f09b9cdd6"
+                "reference": "f08263e7ff05547d2a845a5ee1108d4bf2c2d581"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/CmsBundle/zipball/7cf276ca2323d27add0f8e246e24ac8f09b9cdd6",
-                "reference": "7cf276ca2323d27add0f8e246e24ac8f09b9cdd6",
+                "url": "https://api.github.com/repos/ekyna/CmsBundle/zipball/f08263e7ff05547d2a845a5ee1108d4bf2c2d581",
+                "reference": "f08263e7ff05547d2a845a5ee1108d4bf2c2d581",
                 "shasum": ""
             },
             "require": {
@@ -1342,7 +1344,7 @@
                 "bundle",
                 "content"
             ],
-            "time": "2015-06-18 06:26:14"
+            "time": "2015-06-27 08:55:40"
         },
         {
             "name": "ekyna/core-bundle",
@@ -1351,12 +1353,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/CoreBundle.git",
-                "reference": "e819b5d765defb4c538559d19bc477631ff64116"
+                "reference": "b39bb6ae58f0d0be561a7d7c55b29fcc71615b98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/CoreBundle/zipball/e819b5d765defb4c538559d19bc477631ff64116",
-                "reference": "e819b5d765defb4c538559d19bc477631ff64116",
+                "url": "https://api.github.com/repos/ekyna/CoreBundle/zipball/b39bb6ae58f0d0be561a7d7c55b29fcc71615b98",
+                "reference": "b39bb6ae58f0d0be561a7d7c55b29fcc71615b98",
                 "shasum": ""
             },
             "require": {
@@ -1423,7 +1425,7 @@
                 "Symfony2",
                 "bundle"
             ],
-            "time": "2015-06-18 07:26:14"
+            "time": "2015-06-29 19:07:38"
         },
         {
             "name": "ekyna/file-manager-bundle",
@@ -1588,12 +1590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/MediaBundle.git",
-                "reference": "64970e71507b17a2a559de94f4cd64226c91c8c6"
+                "reference": "9fc300bf3879ebacc6e95464c0f98b3370ff0218"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/MediaBundle/zipball/64970e71507b17a2a559de94f4cd64226c91c8c6",
-                "reference": "64970e71507b17a2a559de94f4cd64226c91c8c6",
+                "url": "https://api.github.com/repos/ekyna/MediaBundle/zipball/9fc300bf3879ebacc6e95464c0f98b3370ff0218",
+                "reference": "9fc300bf3879ebacc6e95464c0f98b3370ff0218",
                 "shasum": ""
             },
             "require": {
@@ -1628,7 +1630,7 @@
                 "Symfony2",
                 "bundle"
             ],
-            "time": "2015-06-18 07:27:58"
+            "time": "2015-06-30 09:36:06"
         },
         {
             "name": "ekyna/require-js-bundle",
@@ -1879,12 +1881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/UserBundle.git",
-                "reference": "99f8c8e955abaca29ffcd081ece49ae954b5e060"
+                "reference": "fabfe0d725fc0af191c23d4c7eb6d2def95349ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/UserBundle/zipball/99f8c8e955abaca29ffcd081ece49ae954b5e060",
-                "reference": "99f8c8e955abaca29ffcd081ece49ae954b5e060",
+                "url": "https://api.github.com/repos/ekyna/UserBundle/zipball/fabfe0d725fc0af191c23d4c7eb6d2def95349ed",
+                "reference": "fabfe0d725fc0af191c23d4c7eb6d2def95349ed",
                 "shasum": ""
             },
             "require": {
@@ -1922,7 +1924,7 @@
                 "bundle",
                 "user"
             ],
-            "time": "2015-06-16 19:30:10"
+            "time": "2015-06-29 08:05:44"
         },
         {
             "name": "eonasdan/bootstrap-datetimepicker",
@@ -2454,16 +2456,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "7.0.6",
+            "version": "7.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "88554d43fcb2a686949f01a1c8f364962551ba24"
+                "reference": "c1c2ab9144479c4a67286d8f150d82770aca9400"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/88554d43fcb2a686949f01a1c8f364962551ba24",
-                "reference": "88554d43fcb2a686949f01a1c8f364962551ba24",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/c1c2ab9144479c4a67286d8f150d82770aca9400",
+                "reference": "c1c2ab9144479c4a67286d8f150d82770aca9400",
                 "shasum": ""
             },
             "require": {
@@ -2510,7 +2512,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2015-06-01 13:53:38"
+            "time": "2015-06-26 07:56:20"
         },
         {
             "name": "gregwar/captcha",
@@ -3658,16 +3660,16 @@
         },
         {
             "name": "kriswallsmith/buzz",
-            "version": "v0.14",
+            "version": "v0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "f802a9b9d01b53496f50c9c5e09b5c779cbbd300"
+                "reference": "d4041666c3ffb379af02a92dabe81c904b35fab8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/f802a9b9d01b53496f50c9c5e09b5c779cbbd300",
-                "reference": "f802a9b9d01b53496f50c9c5e09b5c779cbbd300",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/d4041666c3ffb379af02a92dabe81c904b35fab8",
+                "reference": "d4041666c3ffb379af02a92dabe81c904b35fab8",
                 "shasum": ""
             },
             "require": {
@@ -3702,7 +3704,7 @@
                 "curl",
                 "http client"
             ],
-            "time": "2015-06-02 16:48:29"
+            "time": "2015-06-25 17:26:56"
         },
         {
             "name": "liip/imagine-bundle",
@@ -3955,16 +3957,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.13.1",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac"
+                "reference": "b287fbbe1ca27847064beff2bad7fb6920bf08cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
-                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/b287fbbe1ca27847064beff2bad7fb6920bf08cc",
+                "reference": "b287fbbe1ca27847064beff2bad7fb6920bf08cc",
                 "shasum": ""
             },
             "require": {
@@ -3975,12 +3977,14 @@
                 "psr/log-implementation": "1.0.0"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "~2.4, >2.4.8",
+                "aws/aws-sdk-php": "^2.4.9",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
-                "phpunit/phpunit": "~4.0",
-                "raven/raven": "~0.5",
-                "ruflin/elastica": "0.90.*",
+                "php-console/php-console": "^3.1.3",
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "2.3.0",
+                "raven/raven": "~0.8",
+                "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
             },
@@ -3990,6 +3994,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
@@ -3998,7 +4003,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13.x-dev"
+                    "dev-master": "1.14.x-dev"
                 }
             },
             "autoload": {
@@ -4024,7 +4029,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-03-09 09:58:04"
+            "time": "2015-06-19 13:29:54"
         },
         {
             "name": "nikic/php-parser",
@@ -4337,20 +4342,20 @@
         },
         {
             "name": "robloach/component-installer",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobLoach/component-installer.git",
-                "reference": "9ebfe24d48b08ce63cf377d719e4ad045e057855"
+                "reference": "6f654095da6e364261093c2d9ca416e1027d0169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/9ebfe24d48b08ce63cf377d719e4ad045e057855",
-                "reference": "9ebfe24d48b08ce63cf377d719e4ad045e057855",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/6f654095da6e364261093c2d9ca416e1027d0169",
+                "reference": "6f654095da6e364261093c2d9ca416e1027d0169",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "1.0.0",
+                "composer-plugin-api": "^1.0",
                 "kriswallsmith/assetic": "1.*",
                 "php": ">=5.3.2"
             },
@@ -4381,7 +4386,7 @@
                 }
             ],
             "description": "Allows installation of Components via Composer.",
-            "time": "2015-06-08 13:01:20"
+            "time": "2015-06-18 13:02:30"
         },
         {
             "name": "ruflin/elastica",
@@ -4609,7 +4614,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/TinymceBundle.git",
-                "reference": "5e01840b50f9ea36af10865f422b4d8ebb18f938"
+                "reference": "a1ccea13304161325b9be153152b9fe769094c5b"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -4660,7 +4665,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2015-06-18 07:33:20"
+            "time": "2015-06-27 10:13:29"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -5130,16 +5135,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "4.1.10",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "503d6fe1e69bd9830d39689b6e32a6c7ebffb861"
+                "reference": "905eb7e791caa652dce3c44abcf49d9c3f725c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/503d6fe1e69bd9830d39689b6e32a6c7ebffb861",
-                "reference": "503d6fe1e69bd9830d39689b6e32a6c7ebffb861",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/905eb7e791caa652dce3c44abcf49d9c3f725c4d",
+                "reference": "905eb7e791caa652dce3c44abcf49d9c3f725c4d",
                 "shasum": ""
             },
             "type": "component",
@@ -5172,7 +5177,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2015-05-05 12:07:24"
+            "time": "2015-06-29 09:08:55"
         },
         {
             "name": "twig/extensions",
@@ -5767,16 +5772,16 @@
         },
         {
             "name": "phpunit/php-text-template",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a"
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
                 "shasum": ""
             },
             "require": {
@@ -5785,20 +5790,17 @@
             "type": "library",
             "autoload": {
                 "classmap": [
-                    "Text/"
+                    "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
+                    "email": "sebastian@phpunit.de",
                     "role": "lead"
                 }
             ],
@@ -5807,7 +5809,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2014-01-30 17:20:04"
+            "time": "2015-06-21 13:50:34"
         },
         {
             "name": "phpunit/php-timer",
@@ -5852,16 +5854,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "db63be1159c81df649cd0260e30249a586d4129e"
+                "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db63be1159c81df649cd0260e30249a586d4129e",
-                "reference": "db63be1159c81df649cd0260e30249a586d4129e",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
+                "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
                 "shasum": ""
             },
             "require": {
@@ -5897,7 +5899,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-06-12 07:34:24"
+            "time": "2015-06-19 03:43:16"
         },
         {
             "name": "phpunit/phpunit",
@@ -6198,16 +6200,16 @@
         },
         {
             "name": "sebastian/version",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "ab931d46cd0d3204a91e1b9a40c4bc13032b58e4"
+                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/ab931d46cd0d3204a91e1b9a40c4bc13032b58e4",
-                "reference": "ab931d46cd0d3204a91e1b9a40c4bc13032b58e4",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
                 "shasum": ""
             },
             "type": "library",
@@ -6229,7 +6231,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2015-02-24 06:35:25"
+            "time": "2015-06-21 13:59:46"
         },
         {
             "name": "sensio/generator-bundle",

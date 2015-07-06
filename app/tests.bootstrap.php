@@ -46,7 +46,7 @@ if (isset($_ENV['BOOTSTRAP_CLEAR_CACHE_ENV'])) {
     runCommand('ekyna:user:create user@example.org user Jane Doe');
 
     // Load fixtures
-    runCommand('doctrine:fixtures:load --append');
+    runCommand('doctrine:fixtures:load --fixtures=src/AppBundle --append');
 }
 
 require __DIR__.'/bootstrap.php.cache';

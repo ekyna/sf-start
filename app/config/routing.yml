@@ -20,9 +20,5 @@ ekyna_admin:
     resource: "@EkynaAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
-ekyna_file_manager:
-    resource: "@EkynaFileManagerBundle/Resources/config/routing.yml"
-    prefix:   /filemanager
-
 ekyna_core:
     resource: "@EkynaCoreBundle/Resources/config/routing.yml"

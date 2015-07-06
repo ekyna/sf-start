@@ -120,10 +120,6 @@ class PageController extends Controller
             'form' => $form->createView()
         ));
 
-        if ('GET' !== $request->getMethod()) {
-            return $response->setPrivate();
-        }
-
-        return $this->configureSharedCache($response);
+        return $response->setPrivate();
     }
 }

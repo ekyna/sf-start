@@ -2,34 +2,37 @@ home:
     pattern: /
     defaults:
         _controller: AppBundle:Page:home
+    requirements:
+        _method: GET
+    options:
         _cms:
             name: Accueil
             menus: [footer]
             advanced: true
-    requirements:
-        _method: GET
 
 example:
     pattern: /example
     defaults:
         _controller: AppBundle:Page:default
+    requirements:
+        _method: GET
+    options:
         _cms:
             name: Page d'exemple
             menus: [main, footer]
             locked: false
             advanced: true
             position: 1
-    requirements:
-        _method: GET
 
 contact:
     pattern: /contact
     defaults:
         _controller: AppBundle:Page:contact
+    requirements:
+        _method: GET|POST
+    options:
         _cms:
             name: Contact
             menus: [main, footer]
             advanced: true
             position: 99
-    requirements:
-        _method: GET|POST

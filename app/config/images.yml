@@ -2,14 +2,16 @@
 #    filter_sets:
 #        admin_thumb:
 #            quality: 70
-#            data_loader: local_image
+#            cache: local_media
+#            data_loader: local_media
 #            filters:
 #                thumbnail: { size: [145, 109], mode: outbound }
 #            post_processors:
 #                jpegoptim: {}
 #        admin_modal:
 #            quality: 70
-#            data_loader: local_image
+#            cache: local_media
+#            data_loader: local_media
 #            filters:
 #                thumbnail: { size: [800, 600], mode: outbound }
 #                background: { size: [800, 600], color: '#fff' }

@@ -13,7 +13,6 @@ class AppKernel extends Kernel
             new Ekyna\Bundle\SettingBundle\EkynaSettingBundle(),
             new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
             new Ekyna\Bundle\UserBundle\EkynaUserBundle(),
-            new Ekyna\Bundle\FileManagerBundle\EkynaFileManagerBundle(),
             new Ekyna\Bundle\SitemapBundle\EkynaSitemapBundle(),
             new Ekyna\Bundle\InstallBundle\EkynaInstallBundle(),
             new Ekyna\Bundle\RequireJsBundle\EkynaRequireJsBundle(),
@@ -35,6 +34,7 @@ class AppKernel extends Kernel
 
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TwigJsBundle\JMSTwigJsBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
@@ -50,6 +50,12 @@ class AppKernel extends Kernel
             new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+
+            //new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            //new Payum\Bundle\PayumBundle\PayumBundle(),
+            //new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
+            //new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            //new Ob\HighchartsBundle\ObHighchartsBundle(),
 
             new AppBundle\AppBundle(),
             new WebBundle\WebBundle(),

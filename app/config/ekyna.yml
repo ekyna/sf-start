@@ -54,7 +54,7 @@ ekyna_cms:
 
 ekyna_core:
     cache:
-        default_smaxage: 3600
+        default_smaxage: 21600 # 6h
         tag:
             secret: %secret%
             encode: true
