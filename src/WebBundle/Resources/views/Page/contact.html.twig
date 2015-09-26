@@ -1,18 +1,34 @@
 {% extends "WebBundle:Page:default.html.twig" %}
 
-{% block content %}
+{% block containers %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ cms_breadcrumb() }}
+            {{ cms_flashes() }}
 
-    {{ parent() }}
-
-    <form action="{{ path('contact') }}" {{ form_enctype(form) }} method="post" class="form-horizontal">
-        {{ bootstrap_set_style('horizontal') }}
-        <div class="form-body">
-            {{ form_row(form.email, {'label_col': 4, 'widget_col': 8}) }}
-            {{ form_row(form.subject, {'label_col': 4, 'widget_col': 8}) }}
-            {{ form_row(form.message, {'label_col': 4, 'widget_col': 8}) }}
-            {{ form_rest(form) }}
+            {{ cms_title() }}
         </div>
-        {{ ui_form_footer(form) }}
-    </form>
-
-{% endblock content %}
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ cms_content() }}
+        </div>
+        <div class="col-md-6">
+            <form action="{{ path('contact') }}" {{ form_enctype(form) }} method="post" class="form-horizontal">
+                {{ bootstrap_set_style('horizontal') }}
+                {{ bootstrap_set_col_size('md') }}
+                {{ bootstrap_set_label_col(3) }}
+                {{ bootstrap_set_widget_col(9) }}
+                <div class="form-body">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.subject) }}
+                    {{ form_row(form.message) }}
+                    {{ form_rest(form) }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock containers %}

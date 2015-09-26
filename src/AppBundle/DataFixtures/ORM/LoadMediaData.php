@@ -61,6 +61,7 @@ class LoadMediaData extends Loader implements FixtureInterface, OrderedFixtureIn
     public function load(ObjectManager $om)
     {
         $this->loadFolders($om);
+        $this->loadRootMedias($om);
 
         foreach (MediaTypes::getConstants() as $const) {
             $this->loadMedias($om, $const);
@@ -76,13 +77,13 @@ class LoadMediaData extends Loader implements FixtureInterface, OrderedFixtureIn
     {
         for ($f = 1; $f <= 3; $f++) {
             $folder = $this->folderRepository->createNew();
-            $folder->setName(sprintf('Folder %s', $f));
+            $folder->setName($this->faker->sentence(rand(2,3)));
             $om->persist($folder);
 
             $sfCount = rand(0, 2);
             for ($sf = 1; $sf <= $sfCount; $sf++) {
                 $subFolder = $this->folderRepository->createNew();
-                $subFolder->setName(sprintf('Folder %s.%s', $f, $sf));
+                $subFolder->setName($this->faker->sentence(rand(2,3)));
                 $this->folderRepository->persistAsLastChildOf($subFolder, $folder);
                 $om->persist($subFolder);
             }
@@ -91,15 +92,71 @@ class LoadMediaData extends Loader implements FixtureInterface, OrderedFixtureIn
     }
 
     /**
+     * Load the root folder's medias.
+     *
+     * @param ObjectManager $om
+     * @throws \Exception
+     */
+    private function loadRootMedias(ObjectManager $om)
+    {
+        $dir = realpath(__DIR__.sprintf('/../../Resources/fixtures/%s', MediaTypes::IMAGE));
+        if (0 === strlen($dir)) {
+            return;
+        }
+        if (!is_dir($dir)) {
+            throw new \RuntimeException(sprintf('Directory "%s" does not exists.', $dir));
+        }
+
+        $sources = [];
+        $files = scandir($dir);
+        foreach ($files as $file) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+            $source = sprintf('%s/%s', $dir, $file);
+            if (!file_exists($source)) {
+                throw new \Exception(sprintf('File "%s" does not exists.', $source));
+            }
+            $sources[] = $source;
+        }
+
+        $root = $this->folderRepository->findRoot();
+        for ($i = 1; $i < 24; $i++) {
+            $source = $this->faker->randomElement($sources);
+            $target = sprintf('%s/%d.jpg', sys_get_temp_dir(), $i);
+            if (!copy($source, $target)) {
+                throw new \Exception(sprintf('Failed to copy "%s" into "%s".', $source, $target));
+            }
+
+            /** @var \Ekyna\Bundle\MediaBundle\Model\MediaInterface $media */
+            $media = $this->mediaRepository->createNew();
+            $media
+                ->setTitle($this->faker->sentence(rand(2,3)))
+                //->setDescription('<p>'.$this->faker->sentence().'</p>')
+                ->setFolder($root)
+                ->setFile(new File($target))
+                ->setType(MediaTypes::IMAGE)
+            ;
+            $om->persist($media);
+        }
+        $om->flush();
+    }
+
+    /**
      * Load the files.
      *
      * @param ObjectManager $om
+     * @param string $type
+     * @throws \Exception
      */
     private function loadMedias(ObjectManager $om, $type)
     {
         MediaTypes::isValid($type, true);
 
-        $dir = realpath(__DIR__.sprintf('/../../Resources/fixtures/%s/', $type));
+        $dir = realpath(__DIR__.sprintf('/../../Resources/fixtures/%s', $type));
+        if (0 === strlen($dir)) {
+            return;
+        }
         if (!is_dir($dir)) {
             throw new \RuntimeException(sprintf('Directory "%s" does not exists.', $dir));
         }
@@ -110,13 +167,26 @@ class LoadMediaData extends Loader implements FixtureInterface, OrderedFixtureIn
                 continue;
             }
 
+            $source = sprintf('%s/%s', $dir, $file);
+            if (!file_exists($source)) {
+                throw new \Exception(sprintf('File "%s" does not exists.', $source));
+            }
+            $target = sprintf('%s/%s', sys_get_temp_dir(), $file);
+            if (!copy($source, $target)) {
+                throw new \Exception(sprintf('Failed to copy "%s" into "%s".', $source, $target));
+            }
+
+            /** @var \Ekyna\Bundle\MediaBundle\Model\FolderInterface $folder */
+            $folder = $this->folderRepository->findRandomOneBy([]);
+
             /** @var \Ekyna\Bundle\MediaBundle\Model\MediaInterface $media */
             $media = $this->mediaRepository->createNew();
             $media
                 ->setTitle($this->faker->sentence())
-                ->setDescription('<p>'.$this->faker->sentence().'</p>')
-                ->setFolder($this->folderRepository->findRandomOneBy([]))
-                ->setFile(new File(sprintf('%s/%s', $dir, $file)))
+                //->setDescription('<p>'.$this->faker->sentence().'</p>')
+                ->setFolder($folder)
+                ->setFile(new File($target))
+                ->setType($type)
             ;
             $om->persist($media);
         }

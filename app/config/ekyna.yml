@@ -78,3 +78,10 @@ ekyna_core:
                 - "@WebBundle/Resources/asset/less/bootstrap.less"
                 - "%kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/less/form.less"
 
+ekyna_google:
+    client:
+        application_name: Test project
+        developer_key: AIzaSyBQXhYai0pkg-ZhaBmP36372n1GZSw4qfo
+        client_id: ""
+        client_secret: ""
+        redirect_uri: ""

@@ -1,0 +1,15 @@
+web:
+    contact:
+        button: Send
+        field:
+            name: Name
+            email: Email
+            subject: Subject
+            message: Message
+        message:
+            success: >
+                Your message has been successfully sent.<br>
+                We will be willing to answer you as soon as possible.
+            failure: >
+                An error occured while sending your message.<br>
+                Please try again later.

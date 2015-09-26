@@ -28,9 +28,7 @@ class PageControllerTest extends WebTestCase
      */
     public function testDefaultAction()
     {
-        $routes = array(
-            'example',
-        );
+        $routes = ['example'];
 
         foreach ($routes as $route) {
             $this->client->request('GET', $this->generatePath($route));

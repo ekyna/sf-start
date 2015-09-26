@@ -1,6 +1,11 @@
 imports:
     - { resource: config_dev.yml }
 
+parameters:
+    locale:  en
+    locales: [en, fr]
+    kernel.var_dir: %kernel.root_dir%/../var/test
+
 framework:
     test: ~
     session:
@@ -19,20 +24,14 @@ doctrine:
     dbal:
         dbname: "%database_name%_test"
 
-knp_gaufrette:
-    adapters:
-        local_image:
-            local:
-                directory:  "%kernel.root_dir%/../test/media/image"
-        local_file:
-            local:
-                directory:  "%kernel.root_dir%/../test/media/file"
-
 liip_imagine:
-    loaders:
-        local_image:
-            filesystem:
-                data_root: "%kernel.root_dir%/../test/media/image"
+    resolvers:
+        default:
+            web_path:
+                cache_prefix: cache/test
+        local_upload:
+            web_path:
+                cache_prefix: cache/test/upload
 
 fos_elastica:
     indexes:

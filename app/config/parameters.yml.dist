@@ -21,6 +21,8 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     cache:             file_system
+    node_path:         /usr/bin/nodejs
+    wkhtmltopdf_path:  'xvfb-run wkhtmltopdf'
 
     debug_toolbar:          true
     debug_redirects:        false
@@ -33,7 +35,5 @@ parameters:
     router.request_context.host: %hostname%
     router.request_context.scheme: http
     router.request_context.base_url: ~
-
-    assets_base_urls: //%hostname%
 
     error_report_mail: support@ekyna.com

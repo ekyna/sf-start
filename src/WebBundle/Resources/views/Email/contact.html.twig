@@ -6,7 +6,7 @@
 
 {% block body %}
     <p style="text-align:center;font-weight:bold;font-size:16px;color:#999999;">Message du formulaire de contact du site {{ get_setting('general.site_name') }} :</p>
-    <p>De <a href="mailto:{{ from }}">{{ from }}</a>.</p>
+    <p>De <a href="mailto:{{ from }}">{{ name }} &lt;{{ from }}&gt;</a>.</p>
     <p><strong>{{ subject }}</strong></p>
     <p style="border-top:1px solid #cccccc;margin-top:20px;padding-top:20px;">
         {{ message|nl2br }}

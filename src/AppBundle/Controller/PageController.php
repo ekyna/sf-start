@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Ekyna\Bundle\CoreBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Validator\Constraints;
 
 /**
  * Class PageController
@@ -16,16 +17,11 @@ class PageController extends Controller
     /**
      * Home page action.
      *
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws NotFoundHttpException
      */
-    public function homeAction(Request $request)
+    public function homeAction()
     {
-        if (null === $page = $this->getDoctrine()->getRepository('EkynaCmsBundle:Page')->findOneByRequest($request)) {
-            throw new NotFoundHttpException('Page not found');
-        }
-
         return $this->configureSharedCache(
             $this->render('WebBundle:Page:home.html.twig')
         );
@@ -34,15 +30,10 @@ class PageController extends Controller
     /**
      * Default page action.
      *
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function defaultAction(Request $request)
+    public function defaultAction()
     {
-        if (null === $page = $this->getDoctrine()->getRepository('EkynaCmsBundle:Page')->findOneByRequest($request)) {
-            throw new NotFoundHttpException('Page not found');
-        }
-
         return $this->configureSharedCache(
             $this->render('WebBundle:Page:default.html.twig')
         );
@@ -56,69 +47,80 @@ class PageController extends Controller
      */
     public function contactAction(Request $request)
     {
-        if (null === $page = $this->getDoctrine()->getRepository('EkynaCmsBundle:Page')->findOneByRequest($request)) {
-            throw new NotFoundHttpException('Page not found');
-        }
-
-        $form =
-            $this->createFormBuilder(null, array(
-                '_footer' => array(
-                    'offset' => 4,
-                    'buttons' => array(
-                        'submit' => array(
-                            'label' => 'ekyna_core.button.send'
-                        )
-                    )
-                )
-            ))
-                ->add('email', 'email', array(
-                    'label' => 'Votre adresse email',
-                ))
-                ->add('subject', 'text', array(
-                    'label' => 'Sujet de votre demande',
-                ))
-                ->add('message', 'textarea', array(
-                    'label' => 'Votre message'
-                ))
-                ->getForm()
+        $form = $this
+            ->createFormBuilder()
+            ->add('name', 'text', [
+                'label' => 'web.contact.field.name',
+                'constraints' => [
+                    new Constraints\NotBlank(),
+                ],
+            ])
+            ->add('email', 'email', [
+                'label' => 'web.contact.field.email',
+                'constraints' => [
+                    new Constraints\NotBlank(),
+                    new Constraints\Email(),
+                ],
+            ])
+            ->add('subject', 'text', [
+                'label' => 'web.contact.field.subject',
+                'constraints' => [
+                    new Constraints\NotBlank(),
+                ],
+            ])
+            ->add('message', 'textarea', [
+                'label' => 'web.contact.field.message',
+                'constraints' => [
+                    new Constraints\NotBlank(),
+                ],
+            ])
+            ->add('actions', 'form_actions', [
+                'buttons' => [
+                    'save' => [
+                        'type' => 'submit',
+                        'options' => [
+                            'button_class' => 'primary',
+                            'label' => 'web.contact.button',
+                        ],
+                    ],
+                ],
+            ])
+            ->getForm()
         ;
 
         $form->handleRequest($request);
         if ($form->isValid()) {
             $settings = $this->container->get('ekyna_setting.manager');
-            $fromEmail = $settings->getParameter('notification.from_email');
-            $fromName = $settings->getParameter('notification.from_name');
             $toEmails = $settings->getParameter('notification.to_emails');
 
+            $fromName = $form->get('name')->getData();
+            $fromEmail = $form->get('email')->getData();
+
+            /** @var \Swift_Mime_Message $message */
             $message = \Swift_Message::newInstance()
                 ->setSubject($form->get('subject')->getData())
                 ->setFrom($fromEmail, $fromName)
                 ->setTo($toEmails)
                 ->setBody($this->get('twig')->render(
-                    'WebBundle:Email:contact.html.twig', array(
-                        'from' => $form->get('email')->getData(),
+                    'WebBundle:Email:contact.html.twig', [
+                        'name' => $fromName,
+                        'from' => $fromEmail,
                         'subject' => $form->get('subject')->getData(),
                         'message' => $form->get('message')->getData(),
-                    )
+                    ]
                 ), 'text/html')
             ;
             if ($this->get('mailer')->send($message)) {
-                $this->addFlash(
-                    'Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.',
-                    'success'
-                );
+                $this->addFlash('web.contact.message.success', 'success');
                 return $this->redirect($this->generateUrl('contact'));
             } else {
-                $this->addFlash(
-                    'Une error s\'est produite lors de l\'envoi de votre message. Veuillez réessayer utlérieurement.',
-                    'error'
-                );
+                $this->addFlash('web.contact.message.failure', 'error');
             }
         }
 
-        $response = $this->render('WebBundle:Page:contact.html.twig', array(
+        $response = $this->render('WebBundle:Page:contact.html.twig', [
             'form' => $form->createView()
-        ));
+        ]);
 
         return $response->setPrivate();
     }

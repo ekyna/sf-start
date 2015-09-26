@@ -1,0 +1,15 @@
+form label.control-label.required:after,
+form div.checkbox > label.required:after {
+    width: 9px;
+    position: absolute;
+    top: 9px;
+    right: 5px;
+    content: "*";
+    color: #d9534f;
+}
+
+form div.checkbox > label.required:after {
+    position: relative;
+    right: 0;
+    margin-left: 2px;
+}

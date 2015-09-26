@@ -1,0 +1,15 @@
+web:
+    contact:
+        button: Envoyer
+        field:
+            name: Nom
+            email: Email
+            subject: Sujet
+            message: Message
+        message:
+            success: >
+                Votre message a bien été envoyé.<br>
+                Nous vous répondrons dans les plus brefs délais.
+            failure: >
+                Une error s'est produite lors de l'envoi de votre message.<br>
+                Veuillez réessayer utlérieurement.

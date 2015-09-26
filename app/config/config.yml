@@ -8,6 +8,7 @@ parameters:
     session.attribute_bag.class: Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag
     security.authentication.success_handler.class: Ekyna\Bundle\UserBundle\Authentication\AuthenticationSuccessHandler
     fos_elastica.client.class: Ekyna\Bundle\CoreBundle\Elastica\Client
+    kernel.var_dir: %kernel.root_dir%/../var
 
 framework:
     esi:             { enabled: true }
@@ -18,11 +19,14 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:      { api: 2.5 } # enable_annotations: true
     templating:
         engines: ['twig']
-        assets_base_urls: { http: ["http:%assets_base_urls%"], ssl: ["https:%assets_base_urls%"] }
-        assets_version: v1.0
+    assets:
+        version: 'v1.0'
+        version_format: '%%s?version=%%s'
+        base_path: /
+        #base_urls: ["http://%hostname%", "https://%hostname%"]
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ['127.0.0.1', '10.0.0.0/8']
@@ -53,7 +57,7 @@ assetic:
             bin: /usr/bin/jpegoptim
             strip_all: true
         less:
-            node: node
+            node: "%node_path%"
             node_paths: [/usr/local/lib/node_modules]
             apply_to: "\.less$"
         yui_css:
@@ -97,7 +101,7 @@ swiftmailer:
 # KNP Snappy
 #knp_snappy:
 #    pdf:
-#        binary:  "%kernel.root_dir%/../bin/wkhtmltopdf-amd64"
+#        binary:  "%wkhtmltopdf_path%"
 #    image:
 #        enabled: false
 
@@ -108,7 +112,7 @@ jms_i18n_routing:
     strategy: prefix_except_default
     cookie:
         enabled: false
-    exclusion_pattern: "^/(admin|api|cms|filemanager)/" # TODO
+    exclusion_pattern: "^/(admin|api)/"
     routers:
         - "router.default"
         - "ekyna_cms.router"
