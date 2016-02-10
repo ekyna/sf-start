@@ -10,15 +10,16 @@ class AppKernel extends Kernel
         $bundles = array(
             new Ekyna\Bundle\CmsBundle\EkynaCmsBundle(),
             new Ekyna\Bundle\MediaBundle\EkynaMediaBundle(),
-            new Ekyna\Bundle\SettingBundle\EkynaSettingBundle(),
-            new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
             new Ekyna\Bundle\UserBundle\EkynaUserBundle(),
             new Ekyna\Bundle\SitemapBundle\EkynaSitemapBundle(),
+            new Ekyna\Bundle\SocialButtonsBundle\EkynaSocialButtonsBundle(),
             new Ekyna\Bundle\GoogleBundle\EkynaGoogleBundle(),
             new Ekyna\Bundle\InstallBundle\EkynaInstallBundle(),
             new Ekyna\Bundle\RequireJsBundle\EkynaRequireJsBundle(),
             new Ekyna\Bundle\FontAwesomeBundle\EkynaFontAwesomeBundle(),
 
+            new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
+            new Ekyna\Bundle\SettingBundle\EkynaSettingBundle(),
             new Ekyna\Bundle\AdminBundle\EkynaAdminBundle(),
             new Ekyna\Bundle\CoreBundle\EkynaCoreBundle(),
 
@@ -53,12 +54,6 @@ class AppKernel extends Kernel
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
-
-            //new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
-            //new Payum\Bundle\PayumBundle\PayumBundle(),
-            //new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
-            //new Craue\FormFlowBundle\CraueFormFlowBundle(),
-            //new Ob\HighchartsBundle\ObHighchartsBundle(),
 
             new AppBundle\AppBundle(),
             new WebBundle\WebBundle(),

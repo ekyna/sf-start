@@ -13,5 +13,6 @@
 /var/*
 !var/.gitkeep
 /vendor/
+/node_modules
 /bin/
 /.idea/

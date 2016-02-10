@@ -21,8 +21,8 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     cache:             file_system
-    node_path:         /usr/bin/nodejs
-    wkhtmltopdf_path:  'xvfb-run wkhtmltopdf'
+    node_path:         node
+    wkhtmltopdf_path:  wkhtmltopdf
 
     debug_toolbar:          true
     debug_redirects:        false

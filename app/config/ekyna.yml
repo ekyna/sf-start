@@ -1,28 +1,29 @@
-#ekyna_admin:
-#    logo_path: "/bundles/web/img/admin-logo.png"
+ekyna_admin:
 #    resources:
 #        app:
-#            animation:
-#                entity: AppBundle\Entity\Animation
-#                controller: AppBundle\Controller\Admin\AnimationController
-#                repository: AppBundle\Entity\AnimationRepository
-#                event: AppBundle\Event\ExhibitorEvent
-#                form: AppBundle\Form\Type\AnimationType
-#                table: AppBundle\Table\Type\AnimationType
-#                parent: app.space
+#            project:
+#                entity: AppBundle\Entity\Project
+#                repository: AppBundle\Entity\ProjectRepository
+#                controller: AppBundle\Controller\Admin\ProjectController
+#                form: AppBundle\Form\Type\ProjectType
+#                table: AppBundle\Table\Type\ProjectType
+#                translation:
+#                    entity: AppBundle\Entity\ProjectTranslation
+#                    fields: [title, summary, slug]
 #                templates:
-#                    "_form.html": "AppBundle:Admin/Animation:_form.html"
-#                    "show.html": "AppBundle:Admin/Animation:show.html"
+#                    "_form.html": "AppBundle:Admin/Project:_form.html"
+#                    "show.html": "AppBundle:Admin/Project:show.html"
 #    menus:
-#        content:
-#            label: ekyna_core.field.content
-#            icon: file
-#            position: 97
+#        ekyna:
+#            label: ekyna
+#            icon: television
+#            position: 10
 #            entries:
-#                news:
-#                    route: app_news_admin_home
-#                    label: app.news.label.plural
-#                    resource: app.news
+#                projects:
+#                    label: app.project.label.plural
+#                    route: app_project_admin_home
+#                    resource: app_project
+#                    position: 0
 
 ekyna_user:
     templates:
@@ -32,14 +33,14 @@ ekyna_user:
 
 ekyna_cms:
     home_route: home
-    seo:
-        no_follow: true
-        no_index: true
     page:
         controllers:
             default:
                 title: Par défault
-                value: AppBundle:App:default
+                value: AppBundle:Page:default
+        cookie_consent:
+            enable: false
+            controller: AppBundle:Page:default
     menu:
         roots:
             main:
@@ -48,9 +49,6 @@ ekyna_cms:
             footer:
                 title: Pied de page
                 description: Menu du pied de page.
-    cookie_consent:
-        enable: true
-        controller: AppBundle:App:default
 
 ekyna_core:
     cache:
@@ -58,8 +56,8 @@ ekyna_core:
         tag:
             secret: %secret%
             encode: true
-#    ui:
-#        google_font_url: "http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
+    ui:
+        google_font_url: "http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
 #        tinymce_formats:
 #            0:
 #                title: "Colors"

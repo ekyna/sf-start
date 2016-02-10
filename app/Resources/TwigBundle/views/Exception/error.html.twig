@@ -1,17 +1,52 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{# {{ status_code }} {{ status_text }} #}
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>An Error Occurred: {{ status_text }}</title>
-    </head>
-    <body>
-        <h1>Oops! An Error Occurred</h1>
-        <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
-
-        <div>
-            Something is broken. Please e-mail us at [email] and let us know
-            what you were doing when this error occurred. We will fix it as soon
-            as possible. Sorry for any inconvenience caused.
-        </div>
-    </body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Erreur {{ status_code }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body,html{position:relative;width:100%;height:100%;font-family:'Open Sans',Arial,sans-serif;background-color:#f7f3eb}
+        .wrapper{position:absolute;margin-top:-160px;margin-left:-140px;top:50%;left:50%;height:320px;width:280px;}
+        p{color:#4d4747;text-align:center;margin:0;}
+        .icon{color:#337ab7;line-height:1;font-size:140px;}
+        .message {margin-bottom: 16px;}
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    {% if status_code == 404 %} {# Page not found #}
+        <p class="icon">
+            <span class="glyphicon glyphicon-question-sign"></span>
+        </p>
+        <p class="message">
+            La page que vous avez demandée est introuvable.
+        </p>
+        <p>
+            <a href="{{ path(ekyna_cms_home_route) }}">Retour à l'accueil.</a>
+        </p>
+    {% elseif status_code == 503 %} {# Maintenance #}
+        <p class="icon">
+            <span class="glyphicon glyphicon-wrench"></span>
+        </p>
+        <p class="message">
+            Notre site est actuellement en maintenance.<br>
+            Veuillez nous excuser pour la gêne occasionnée.
+        </p>
+    {% else %} {# Error #}
+        <p class="icon">
+            <span class="glyphicon glyphicon-fire"></span>
+        </p>
+        <p class="message">
+            Oops, quelque chose est cassé :(<br>
+            Veuillez nous excuser pour la gêne occasionnée.
+        </p>
+        <p>
+            <a href="{{ path(ekyna_cms_home_route) }}">Retour à l'accueil.</a>
+        </p>
+    {% endif %}
+</div>
+</body>
 </html>
