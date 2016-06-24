@@ -15,7 +15,7 @@
             {{ cms_content() }}
         </div>
         <div class="col-md-6">
-            <form action="{{ path('contact') }}" {{ form_enctype(form) }} method="post" class="form-horizontal">
+            {{ form_start(form) }}
                 {{ bootstrap_set_style('horizontal') }}
                 {{ bootstrap_set_col_size('md') }}
                 {{ bootstrap_set_label_col(3) }}
@@ -27,7 +27,7 @@
                     {{ form_row(form.message) }}
                     {{ form_rest(form) }}
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
 </div>

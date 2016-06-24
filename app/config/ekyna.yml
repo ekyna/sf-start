@@ -1,4 +1,9 @@
 ekyna_admin:
+    dashboard:
+        shortcuts:
+            type: admin_shortcuts
+            options:
+                title: Raccourcis
 #    resources:
 #        app:
 #            project:
@@ -30,9 +35,11 @@ ekyna_user:
         email: 'WebBundle:Email:base.html.twig'
     account:
         enable: false
+    notification:
+        admin_login: false
 
 ekyna_cms:
-    home_route: home
+    home_route: app_page_home
     page:
         controllers:
             default:
@@ -41,6 +48,9 @@ ekyna_cms:
         cookie_consent:
             enable: false
             controller: AppBundle:Page:default
+        wide_search:
+            enable: true
+            controller: AppBundle:Page:search
     menu:
         roots:
             main:
@@ -54,27 +64,29 @@ ekyna_core:
     cache:
         default_smaxage: 21600 # 6h
         tag:
-            secret: %secret%
+            secret: "%secret%"
             encode: true
     ui:
         google_font_url: "http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+        stylesheets:
+            contents:
+                - 'bundles/web/css/content.css'
+#                - 'bundles/ekynacms/css/bootstrap-content.css'
+        tinymce_formats_merge: true
 #        tinymce_formats:
-#            0:
+#            -
 #                title: "Colors"
 #                items:
 #                    - {title: "Bordeau", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "bordeau"}
 #                    - {title: "Vert", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "vert"}
 #                    - {title: "Bleu", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "bleu"}
 #                    - {title: "Orange", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "orange"}
-    assets:
-        content_css:
-            inputs:
-                - "@bootstrap_css"
-                - "@WebBundle/Resources/asset/css/content.css"
-        bootstrap_css:
-            inputs:
-                - "@WebBundle/Resources/asset/less/bootstrap.less"
-                - "%kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/less/form.less"
+
+#ekyna_social_buttons:
+#    links:
+#        github:
+#            icon: github
+#            url: http://github.com/ekyna/
 
 ekyna_google:
     client:

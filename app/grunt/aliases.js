@@ -1,12 +1,9 @@
 module.exports = {
     'default': [
         'tsd',
-        'copy'
-        //'typescript',
-        //'uglify'
+        'build'
     ],
     'build': [
-        'tsd',
-        'copy'
+        'build:web'
     ]
 };

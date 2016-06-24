@@ -1,2 +1,2 @@
-app_pages:
-    resource: "front/pages.yml"
+app_page:
+    resource: "front/page.yml"

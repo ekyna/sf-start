@@ -4,7 +4,6 @@ imports:
 parameters:
     locale:  en
     locales: [en, fr]
-    kernel.var_dir: %kernel.root_dir%/../var/test
 
 framework:
     test: ~
@@ -36,4 +35,4 @@ liip_imagine:
 fos_elastica:
     indexes:
         search:
-            index_name: %hostname%_test
+            index_name: "%hostname%_test" # TODO

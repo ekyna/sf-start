@@ -3,8 +3,10 @@
 // app/tests.bootstrap.php
 if (isset($_ENV['BOOTSTRAP_CLEAR_CACHE_ENV'])) {
 
-    // Clear test image directory.
-    passthru(sprintf('rm -Rf %s/../test', __DIR__));
+    passthru(sprintf(
+        'rm -Rf %s/../test',
+        __DIR__
+    ), $return);
 
     function runCommand($cmd, $exitOnFailure = true) {
         passthru(sprintf(
@@ -24,11 +26,11 @@ if (isset($_ENV['BOOTSTRAP_CLEAR_CACHE_ENV'])) {
     runCommand('cache:clear --no-warmup');
 
     // Drop/Create database
-    runCommand('doctrine:database:drop --force', false);
-    runCommand('doctrine:database:create');
+    //runCommand('doctrine:database:drop --force', false);
+    //runCommand('doctrine:database:create');
 
     // Drop Schema
-    //runCommand('doctrine:schema:drop --force');
+    runCommand('doctrine:schema:drop --force');
 
     // Create Schema
     runCommand('doctrine:schema:create');

@@ -21,18 +21,16 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     cache:             file_system
-    node_path:         node
-    wkhtmltopdf_path:  wkhtmltopdf
+    wkhtmltopdf_path:  /usr/bin/wkhtmltopdf
 
     debug_toolbar:          true
     debug_redirects:        false
-    use_assetic_controller: true
 
     reverse_proxy.enable: false
     reverse_proxy.host: 127.0.0.1
     reverse_proxy.port: 80
 
-    router.request_context.host: %hostname%
+    router.request_context.host: "%hostname%"
     router.request_context.scheme: http
     router.request_context.base_url: ~
 

@@ -1,0 +1,9 @@
+{
+  "name": "sf-start",
+  "devDependencies": {
+    "bootstrap": "^3.3.6"
+  },
+  "resolutions": {
+    "jquery": "1.12.4"
+  }
+}

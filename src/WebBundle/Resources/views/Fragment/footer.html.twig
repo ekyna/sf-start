@@ -1,0 +1,14 @@
+{% spaceless %}
+    <div class="row">
+        <div class="col-md-4">
+            {{ cms_static_block('footer_first_col') }}
+        </div>
+        <div class="col-md-4">
+            {{ cms_menu('footer', {'style': 'unstyled'}) }}
+        </div>
+        <div class="col-md-4">
+            {{ social_share_buttons({'type': 'global'}) }}
+            {{ social_link_buttons({'type': 'global'}) }}
+        </div>
+    </div>
+{% endspaceless %}

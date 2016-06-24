@@ -1,4 +1,5 @@
-home: /
-example: /exemple
-about: /a-propos
-contact: /contact
+app_page_home: /
+app_page_about: /a-propos
+app_page_about_case_studies: /a-propos/etude-de-cas
+app_page_about_expertise: /a-propos/expertise
+app_page_contact: /contact

@@ -3,20 +3,21 @@
 {% block body %}
 
     {% block header %}
-        {% include "WebBundle:Layout:header.html.twig" %}
+        {% include "WebBundle:Fragment:navbar.html.twig" %}
     {% endblock header %}
 
     {% block containers %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                {% block breadcrumb %}{{ cms_breadcrumb() }}{% endblock breadcrumb %}
-                {% block flashes %}{{ cms_flashes() }}{% endblock flashes %}
-
-                {% block content %}{% endblock content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% block breadcrumb %}{{ cms_breadcrumb() }}{% endblock breadcrumb %}
+                    {% block flashes %}{{ cms_flashes() }}{% endblock flashes %}
+                </div>
             </div>
         </div>
-    </div>
+
+        {% block content %}{% endblock content %}
+
     {% endblock containers %}
 
 {% endblock body %}

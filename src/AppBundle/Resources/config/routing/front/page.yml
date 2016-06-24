@@ -1,0 +1,59 @@
+app_page_home:
+    path: ""
+    defaults:
+        _controller: AppBundle:Page:home
+    methods: [GET]
+    options:
+        _cms:
+            name: Accueil
+            menus: [footer]
+            advanced: true
+
+app_page_about:
+    path: /a-propos
+    defaults:
+        _controller: AppBundle:Page:default
+    methods: [GET]
+    options:
+        _cms:
+            name: À propos
+            menus: [main, footer]
+            locked: false
+            advanced: true
+
+app_page_about_case_studies:
+    path: /a-propos/etude-de-cas
+    defaults:
+        _controller: AppBundle:Page:default
+    methods: [GET]
+    options:
+        _cms:
+            name: Étude de cas
+            parent: app_page_about
+            menus: [main:app_page_about]
+            locked: false
+            advanced: true
+
+app_page_about_expertise:
+    path: /a-propos/expertise
+    defaults:
+        _controller: AppBundle:Page:default
+    methods: [GET]
+    options:
+        _cms:
+            name: Expertise
+            parent: app_page_about
+            menus: [main:app_page_about]
+            locked: false
+            advanced: true
+
+app_page_contact:
+    path: /contact
+    defaults:
+        _controller: AppBundle:Page:contact
+    methods: [GET|POST]
+    options:
+        _cms:
+            name: Contact
+            menus: [main, footer]
+            position: 99

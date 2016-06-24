@@ -29,7 +29,7 @@ security:
                 default_target_path: /admin/dashboard
                 use_referer: true
             remember_me:
-                key: "%secret%"
+                secret: "%secret%"
                 name: APP_REMEMBER_ME
                 lifetime: 31536000
                 #domain:   "%router.request_context.host%"
@@ -49,7 +49,7 @@ security:
                 default_target_path: /
                 use_referer: true
             remember_me:
-                key: "%secret%"
+                secret: "%secret%"
                 name: APP_REMEMBER_ME
                 lifetime: 31536000
                 #domain:   "%router.request_context.host%"

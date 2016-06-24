@@ -61,4 +61,14 @@ class PageControllerTest extends WebTestCase
             'Contact form submission failed.'
         );
     }
+
+    /**
+     * Tests the search page.
+     */
+    public function testSearchAction()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
 }
