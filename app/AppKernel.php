@@ -17,10 +17,11 @@ class AppKernel extends Kernel
             new Ekyna\Bundle\AdminBundle\EkynaAdminBundle(),
 
             new Ekyna\Bundle\UserBundle\EkynaUserBundle(),
+            new Ekyna\Bundle\ResourceBundle\EkynaResourceBundle(),
             new Ekyna\Bundle\SettingBundle\EkynaSettingBundle(),
             new Ekyna\Bundle\InstallBundle\EkynaInstallBundle(),
-            new Ekyna\Bundle\CoreBundle\EkynaCoreBundle(),
             new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
+            new Ekyna\Bundle\CoreBundle\EkynaCoreBundle(),
             new Ekyna\Bundle\RequireJsBundle\EkynaRequireJsBundle(),
 
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
@@ -31,10 +32,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            //new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-            new JMS\TwigJsBundle\JMSTwigJsBundle(),
+            new Snc\RedisBundle\SncRedisBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -44,15 +44,16 @@ class AppKernel extends Kernel
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new A2lix\AutoFormBundle\A2lixAutoFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
-            new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
             new Oneup\FlysystemBundle\OneupFlysystemBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
 
             new AppBundle\AppBundle(),
             new WebBundle\WebBundle(),
@@ -98,9 +99,6 @@ class AppKernel extends Kernel
         $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getKernelParameters()
     {
         $parameters = parent::getKernelParameters();

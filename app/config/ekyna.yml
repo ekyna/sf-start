@@ -4,49 +4,49 @@ ekyna_admin:
             type: admin_shortcuts
             options:
                 title: Raccourcis
-#    resources:
-#        app:
-#            project:
-#                entity: AppBundle\Entity\Project
-#                repository: AppBundle\Entity\ProjectRepository
-#                controller: AppBundle\Controller\Admin\ProjectController
-#                form: AppBundle\Form\Type\ProjectType
-#                table: AppBundle\Table\Type\ProjectType
-#                translation:
-#                    entity: AppBundle\Entity\ProjectTranslation
-#                    fields: [title, summary, slug]
-#                templates:
-#                    "_form.html": "AppBundle:Admin/Project:_form.html"
-#                    "show.html": "AppBundle:Admin/Project:show.html"
 #    menus:
-#        ekyna:
-#            label: ekyna
-#            icon: television
+#        content:
+#            label: app.example.title
+#            icon: file
 #            position: 10
 #            entries:
-#                projects:
-#                    label: app.project.label.plural
-#                    route: app_project_admin_home
-#                    resource: app_project
-#                    position: 0
+#                example:
+#                    route: app_example_admin_home
+#                    label: app.example.label.plural
+#                    resource: app.example
+
+#ekyna_resource:
+#    resources:
+#        app:
+#            example:
+#                entity: AppBundle\Entity\Example
+#                form: AppBundle\Form\Type\ExampleType
+#                table: AppBundle\Table\Type\ExampleType
 
 ekyna_user:
-    templates:
-        email: 'WebBundle:Email:base.html.twig'
+#    templates:
+#        email: 'WebBundle:Email:base.html.twig'
     account:
-        enable: false
+        enable: true
+#        register: true
+#        resetting: true
+#        profile: true
     notification:
         admin_login: false
 
 ekyna_cms:
     home_route: app_page_home
+    seo:
+        no_follow: true
+        no_index: true
+        title_append: ' - start.dev'
     page:
         controllers:
             default:
                 title: Par défault
                 value: AppBundle:Page:default
         cookie_consent:
-            enable: false
+            enable: true
             controller: AppBundle:Page:default
         wide_search:
             enable: true
@@ -67,20 +67,27 @@ ekyna_core:
             secret: "%secret%"
             encode: true
     ui:
-        google_font_url: "http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
         stylesheets:
+            fonts:
+                - 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
             contents:
                 - 'bundles/web/css/content.css'
-#                - 'bundles/ekynacms/css/bootstrap-content.css'
-        tinymce_formats_merge: true
-#        tinymce_formats:
-#            -
-#                title: "Colors"
-#                items:
-#                    - {title: "Bordeau", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "bordeau"}
-#                    - {title: "Vert", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "vert"}
-#                    - {title: "Bleu", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "bleu"}
-#                    - {title: "Orange", selector : 'span,em,strong,p,h1,h2,h3,h4,h5,h6', inline: "span", classes: "orange"}
+        colors:
+            primary: 337ab7
+            success: 5cb85c
+            info:    5bc0de
+            warning: f0ad4e
+            danger:  d9534f
+        tinymce:
+            base_formats: bootstrap
+            custom_formats:
+                -
+                    title: 'Typography'
+                    items:
+                        -
+                            title: 'Title'
+                            items:
+                                - {title: 'Blue', selector : 'h1,h2,h3,h4,h5,h6', styles: {color: 'blue'}}
 
 #ekyna_social_buttons:
 #    links:

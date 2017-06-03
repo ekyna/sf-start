@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Erreur {{ status_code }}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
     <style type="text/css">
         body,html{position:relative;width:100%;height:100%;font-family:'Open Sans',Arial,sans-serif;background-color:#f7f3eb}
         .wrapper{position:absolute;margin-top:-160px;margin-left:-140px;top:50%;left:50%;height:320px;width:280px;}
@@ -22,10 +22,8 @@
             <span class="glyphicon glyphicon-question-sign"></span>
         </p>
         <p class="message">
-            La page que vous avez demandée est introuvable.
-        </p>
-        <p>
-            <a href="{{ path(ekyna_cms_home_route) }}">Retour à l'accueil.</a>
+            La page que vous avez demandée est introuvable.<br><br>
+            <a href="/">Retour à l'accueil.</a>
         </p>
     {% elseif status_code == 503 %} {# Maintenance #}
         <p class="icon">
@@ -40,11 +38,8 @@
             <span class="glyphicon glyphicon-fire"></span>
         </p>
         <p class="message">
-            Oops, quelque chose est cassé :(<br>
+            Notre site a rencontré une erreur.<br>
             Veuillez nous excuser pour la gêne occasionnée.
-        </p>
-        <p>
-            <a href="{{ path(ekyna_cms_home_route) }}">Retour à l'accueil.</a>
         </p>
     {% endif %}
 </div>

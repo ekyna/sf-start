@@ -13,6 +13,7 @@ security:
             hash_algorithm:       sha512
             encode_as_base64:     true
             iterations:           1000
+            key_length:           40
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -42,10 +43,13 @@ security:
             switch_user: true
             context:     user
             form_login:
+                success_handler: ekyna_user.authentication.success_handler
+                failure_handler: ekyna_user.authentication.failure_handler
                 provider: fos_userbundle
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
                 always_use_default_target_path: false
+                target_path_parameter: _target_path
                 default_target_path: /
                 use_referer: true
             remember_me:
@@ -56,7 +60,8 @@ security:
                 remember_me_parameter: _remember_me
             logout:
                 path: fos_user_security_logout
-                target: /
+                target: fos_user_security_login
+                invalidate_session: false
             anonymous: true
     access_control:
         - { path: "^/account/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -64,6 +69,7 @@ security:
         - { path: "^/account/register", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "^/account/resetting", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "^/account.*", role: IS_AUTHENTICATED_REMEMBERED }
+
         - { path: "^/admin/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "^/admin/login-check", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "^/admin.*", role: ROLE_ADMIN }

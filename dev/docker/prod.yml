@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+    php:
+        image: ekyna/php7-fpm:7.0.15
+        volumes:
+            - ./config/prod/php.ini:/etc/php7/conf.d/90-custom.ini:ro

@@ -1,3 +1,7 @@
 {% extends "WebBundle:Page:default.html.twig" %}
 
-{% block breadcrumb %}{% endblock breadcrumb %}
+{% block breadcrumb -%}
+    <div class="container">
+        {{ cms_flashes() }}
+    </div>
+{%- endblock breadcrumb %}

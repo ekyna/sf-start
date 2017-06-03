@@ -52,65 +52,51 @@
 
 
 html {
-  height: 100%
+    height: 100%
 }
 
 body {
-  min-height: 100%;
-  position: relative;
-  padding-top: 50px;
+    min-height: 100%;
+    position: relative;
+    padding-top: 50px;
 }
 
 .navbar {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  clear: both;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    clear: both;
 
-  background-color: @navbar-inverse-link-disabled-color;
-  color: @navbar-inverse-color;
-  padding: 15px 0;
+    background-color: @navbar-inverse-link-disabled-color;
+    color: @navbar-inverse-color;
+    padding: 15px 0;
 
-  a {
-    color: @navbar-inverse-link-color;
+    a {
+        color: @navbar-inverse-link-color;
 
-    &:hover {
-      color: @navbar-inverse-link-hover-color;
+        &:hover {
+            color: @navbar-inverse-link-hover-color;
+        }
     }
-  }
 
-  .social-share-buttons, .social-link-buttons {
-    .social-share-button, .social-link-button {
-      background-color: @navbar-inverse-link-color;
-      color: @navbar-inverse-link-disabled-color;
+    .social-share-buttons, .social-link-buttons {
+        .social-share-button, .social-link-button {
+            background-color: @navbar-inverse-link-color;
+            color: @navbar-inverse-link-disabled-color;
 
-      &:hover {
-        background-color: @navbar-inverse-link-hover-color;
-      }
+            &:hover {
+                background-color: @navbar-inverse-link-hover-color;
+            }
+        }
     }
-  }
 }
 
-form label.control-label.required:after,
-form div.checkbox > label.required:after {
-  width: 9px;
-  position: absolute;
-  top: 9px;
-  right: 5px;
-  content: "*";
-  color: #d9534f;
-}
-
-form div.checkbox > label.required:after {
-  position: relative;
-  right: 0;
-  margin-left: 2px;
-}
-
+@import "../../../../../vendor/ekyna/core-bundle/Resources/private/less/ui.less";
+@import "../../../../../vendor/ekyna/user-bundle/Resources/private/less/user-widget.less";
 @import "../../../../../vendor/ekyna/cms-bundle/Resources/private/less/bootstrap-content.less";

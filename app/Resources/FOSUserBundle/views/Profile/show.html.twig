@@ -1,0 +1,12 @@
+{% extends "EkynaUserBundle::layout.html.twig" %}
+
+{% block account %}
+<h3>{{ 'ekyna_user.account.profile.show'|trans }}</h3>
+<hr>
+{% include "EkynaUserBundle:Profile:show_content.html.twig" %}
+<p style="text-align:center">
+    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">
+        {{ 'ekyna_user.account.profile.edit'|trans }}
+    </a>
+</p>
+{% endblock account %}

@@ -1,0 +1,10 @@
+{% extends 'EkynaUserBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        {{ cms_title('h3') }}
+        {{ cms_content() }}
+        <hr>
+        {% include "EkynaUserBundle:Registration:register_content.html.twig" %}
+    </div>
+{% endblock content %}

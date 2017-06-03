@@ -4,6 +4,7 @@ module.exports = {
         'less:web',
         'cssmin:web',
         'uglify:web',
+        'copy:web_img',
         'clean:web_post'
     ]
 };

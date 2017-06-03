@@ -1,0 +1,39 @@
+FROM ekyna/php7-fpm:7.0.15
+
+MAINTAINER Etienne Dauvergne <contact@ekyna.com>
+
+RUN addgroup backend -g 1001 \
+ && adduser -D -u 1001 -h /var/www -s /bin/bash -G backend backend
+
+WORKDIR /var/www
+
+COPY app app
+COPY bin/console bin/console
+COPY bin/symfony_requirements bin/symfony_requirements
+COPY src src
+
+COPY web/app.php web/app.php
+COPY web/js/app.min.js web/js/app.min.js
+
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+
+COPY backup.sh backup.sh
+COPY restore.sh restore.sh
+
+RUN mkdir var \
+ && mkdir var/cache \
+ && mkdir var/logs \
+ && mkdir var/sessions \
+ && mkdir var/data \
+ && mkdir web/cache \
+ && mkdir web/bundles \
+ && mkdir web/tinymce \
+ && chown -Rf backend:backend /var/www \
+ && chmod +x backup.sh restore.sh
+
+RUN su backend -c "composer install --prefer-dist --no-interaction --no-autoloader --no-dev --no-scripts --no-progress --no-suggest" \
+ && su backend -c "composer dump-autoload --optimize" \
+ && su backend -c "composer run-script docker-build-cmd"
+
+# TODO files permissions (chmod)

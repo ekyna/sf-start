@@ -2,13 +2,16 @@ imports:
     - { resource: config_dev.yml }
 
 parameters:
-    locale:  en
-    locales: [en, fr]
+    locale:  fr
+    locales: [fr, en]
 
 framework:
     test: ~
+    csrf_protection:
+        enabled: false
     session:
         storage_id: session.storage.mock_file
+        gc_probability: 0
     profiler:
         collect: false
 
@@ -21,7 +24,7 @@ swiftmailer:
 
 doctrine:
     dbal:
-        dbname: "%database_name%_test"
+        host: "mysql_test.%docker_name%"
 
 liip_imagine:
     resolvers:
@@ -32,7 +35,7 @@ liip_imagine:
             web_path:
                 cache_prefix: cache/test/upload
 
-fos_elastica:
-    indexes:
-        search:
-            index_name: "%hostname%_test" # TODO
+#fos_elastica:
+#    indexes:
+#        search:
+#            index_name: "%hostname%_test" # TODO

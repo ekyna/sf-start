@@ -1,0 +1,42 @@
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-horizontal'}}) }}
+    <div class="form-body">
+        {{ bootstrap_set_style('horizontal') }}
+        {{ bootstrap_set_col_size('md') }}
+
+        {{ form_errors(form) }}
+        {{ form_row(form.email, {'label': 'ekyna_core.field.email'|trans}) }}
+
+        {% if form.username is defined -%}
+            {{ form_row(form.username, {'label': 'ekyna_core.field.username'|trans}) }}
+        {%- endif %}
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.plainPassword.first, {'label_col': 4, 'widget_col': 8, 'label': 'ekyna_core.field.password'|trans}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.plainPassword.second, {'label_col': 4, 'widget_col': 8, 'label': 'ekyna_core.field.verify'|trans}) }}
+            </div>
+        </div>
+        {% if form.captcha is defined -%}
+        <hr>
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-10">
+                {{ form_row(form.captcha, {}) }}
+            </div>
+        </div>
+        {% endif %}
+
+        {{ form_rest(form) }}
+
+        <div class="form-footer">
+            <div class="form-group row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" name="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-ok"></span> {{ 'ekyna_core.button.save'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

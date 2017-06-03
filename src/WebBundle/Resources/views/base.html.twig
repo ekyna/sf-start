@@ -1,23 +1,63 @@
-{% extends "WebBundle::root.html.twig" %}
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}"{{ cms_document_data() }}>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
 
-{% block body %}
+    {% block metas %}{% endblock metas %}
 
-    {% block header %}
-        {% include "WebBundle:Fragment:navbar.html.twig" %}
-    {% endblock header %}
+    {{ ui_content_stylesheets() }}
 
-    {% block containers %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    {% block breadcrumb %}{{ cms_breadcrumb() }}{% endblock breadcrumb %}
-                    {% block flashes %}{{ cms_flashes() }}{% endblock flashes %}
+    {% block stylesheets -%}
+        <link href="{{ asset('bundles/ekynacore/css/fontawesome.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/ekynacore/css/glyphicons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/ekynasocialbuttons/css/share.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/web/css/main.css') }}" rel="stylesheet" type="text/css" />
+    {%- endblock stylesheets %}
+
+    {{ ui_fonts_stylesheets() }}
+    {{ ui_forms_stylesheets() }}
+
+    {% include 'EkynaCoreBundle:Ui:ie-fix.html.twig' %}
+
+    {{ require_js(not app.debug) }}
+</head>
+<body>
+    {% block body %}
+
+        {% include 'WebBundle:Fragment:navbar.html.twig' %}
+
+        {% block breadcrumb -%}
+            <div class="container">
+                {{ cms_flashes() }}
+                {{ cms_breadcrumb() }}
+            </div>
+        {%- endblock breadcrumb %}
+
+        {% block content %}{% endblock content %}
+
+        <div id="footer">
+            <div class="container">
+                {{ render_esi(controller('AppBundle:Fragment:footer', {'locale': app.request.locale})) }}
+                <div>
+                    {{ ui_locale_switcher() }}
                 </div>
             </div>
         </div>
 
-        {% block content %}{% endblock content %}
+    {% endblock body %}
 
-    {% endblock containers %}
+    {% block javascripts -%}
+        <script type="text/javascript">require(['bundles/web/js/main']);</script>
+    {%- endblock javascripts %}
 
-{% endblock body %}
+    {% block tracking -%}
+        {{ ekyna_google_tracking() }}
+    {%- endblock tracking %}
+
+</body>
+</html>
+{% endspaceless %}

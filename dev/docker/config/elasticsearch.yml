@@ -1,0 +1,5 @@
+cluster.name: start
+index.number_of_shards: 1
+index.number_of_replicas: 0
+node.max_local_storage_nodes: 1
+bootstrap.mlockall: true

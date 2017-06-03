@@ -1,0 +1,11 @@
+{% extends 'EkynaUserBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>{{ 'ekyna_user.account.resetting.title'|trans }}</h3>
+            <hr>
+            {% include "EkynaUserBundle:Resetting:reset_content.html.twig" %}
+        </div>
+    </div>
+{% endblock content %}

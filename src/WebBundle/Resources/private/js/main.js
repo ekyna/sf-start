@@ -2,13 +2,29 @@ require([
     'require',
     'jquery',
     'ekyna-cms/user',
+    'ekyna-user/user-widget',
+    'ekyna-media-player',
+    'ekyna-dispatcher',
+    'aos',
     'ekyna-social-buttons/share',
     'bootstrap',
     'bootstrap/hover-dropdown'
 ],
-function(require, $, User) {
+function(require, $, User, UserWidget, MediaPlayer, Dispatcher, AOS) {
 
     User.init();
+
+    UserWidget.initialize().enable();
+
+    MediaPlayer.init();
+
+    /*Dispatcher.on('ekyna_user.user_status', function(e) {
+        console.log('User status : ' + e.authenticated);
+    });*/
+
+    AOS.init({
+        offset: 200
+    });
 
     // Forms
     var $forms = $('.form-body');

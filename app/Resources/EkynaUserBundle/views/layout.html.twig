@@ -1,0 +1,27 @@
+{% extends 'WebBundle::base.html.twig' %}
+
+{% block metas %}
+    {{ cms_metas() }}
+{% endblock metas %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ 'ekyna_user.account.title'|trans }}</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{ knp_menu_render('user_account', {
+                    'template': 'EkynaUserBundle::menu.html.twig',
+                    'style': 'stacked-pills'
+                }) }}
+            </div>
+            <div class="col-md-10">
+                {% block account %}{% endblock account %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

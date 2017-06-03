@@ -6,9 +6,8 @@
 <body style="font-family:Helvetica,Arial,sans-serif;font-size:14px;line-height:19px;color:#333333;background:#f2f2f2;">
 <div style="width:600px;margin:auto;">
     <p style="text-align:center;margin:15px 0;">
-        <a href="{{ url(ekyna_cms_home_route) }}" style="display:inline-block;">
-            {{ get_setting('general.site_name') }}
-            {#<img src="http:{{ asset('bundles/web/img/logo-mail.png', null, true) }}" alt="{{ get_setting('general.site_name') }}">#}
+        <a href="{{ absolute_url(path('app_page_home')) }}" style="display:inline-block;">
+            <img src="http:{{ absolute_url(asset('bundles/web/img/logo.swg')) }}" alt="{{ get_setting('general.site_name') }}">
         </a>
     </p>
     <div style="box-shadow:0 2px 4px #cccccc;">
@@ -21,7 +20,9 @@
             {% block body %}{% endblock %}
         </div>
         <div style="background:#bbbbbb;padding:10px;text-align:center;">
-            <a href="{{ url(ekyna_cms_home_route) }}" style="color:#dddddd;font-size:12px;text-decoration:none;">{{ get_setting('general.site_name') }}</a>
+            <a href="{{ absolute_url(path('app_page_home')) }}" style="color:#dddddd;font-size:12px;text-decoration:none;">
+                {{- get_setting('general.site_name') -}}
+            </a>
         </div>
     </div>
 </div>

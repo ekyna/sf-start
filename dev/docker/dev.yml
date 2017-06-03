@@ -1,0 +1,75 @@
+version: '2'
+
+volumes:
+    database_test:
+        external:
+            name: "${PROJECT_NAME}-test-database"
+
+services:
+#    nginx:
+#        ports:
+#            - "8000:80"
+
+    php:
+        image: ekyna/php7-fpm-dev:7.0.15
+        depends_on:
+            - mysql_test
+        ports:
+            - "9000:22"
+        volumes:
+            - ./config/dev/php.ini:/etc/php7/conf.d/90-custom.ini:ro
+            - ./config/dev/xdebug.ini:/etc/php7/conf.d/xdebug.ini:ro
+        environment:
+            PHP_IDE_CONFIG: "serverName=${PROJECT_NAME}.dev"
+
+    mysql:
+        ports:
+            - "9020:3306"
+
+    mysql_test:
+        container_name: "${PROJECT_NAME}_mysql_test"
+        image: ekyna/mysql
+        env_file: ./config/mysql.env
+        ports:
+            - "9021:3306"
+        volumes:
+            - database_test:/var/lib/mysql:rw
+            - ../../var/backup:/backup:rw
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "mysql_test.${PROJECT_NAME}"
+#
+#    mysql_migration:
+#        ports:
+#            - "3308:3306"
+
+    elasticsearch:
+        ports:
+            - "9030:9200" # HTTP
+#            - "9031:9300" # TCP
+
+    # http://blog.zol.fr/2016/04/06/docker-selenium-behat/
+    se_hub:
+        container_name: "${PROJECT_NAME}_se_hub"
+        image: selenium/hub:3.4.0
+        ports:
+            - "9050:4444"
+        expose:
+            - "4444"
+    se_chrome:
+        container_name: "${PROJECT_NAME}_se_chrome"
+        image: selenium/node-chrome-debug:3.4.0
+        ports:
+            # Port for VNC only
+            - "9051:5900"
+            - "9052:5555"
+        expose:
+            - "5555"
+        links:
+            - se_hub:hub
+        environment:
+            - HUB_PORT_4444_TCP_ADDR=hub

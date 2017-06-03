@@ -1,0 +1,26 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'form-horizontal' } }) }}
+<div class="form-body">
+    {{ bootstrap_set_style('horizontal') }}
+    {{ bootstrap_set_col_size('sm') }}
+    {{ bootstrap_set_label_col(6) }}
+    {{ bootstrap_set_widget_col(6) }}
+
+    {{ form_errors(form) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_rest(form) }}
+
+    <div class="form-footer">
+        <div class="form-group row">
+            <div class="col-md-12" style="text-align: center">
+                <button type="submit" name="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

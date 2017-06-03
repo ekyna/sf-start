@@ -1,0 +1,145 @@
+version: '2'
+
+# Ports:
+# - varnish       : 80 (disabled)
+# - nginx         : 80
+# - php           : 9000 (dev - ssh)
+# - php           : 9010 (dev - xdebug)
+# - mysql         : 9020 (dev)
+# - mysql_test    : 9021 (dev)
+# - elasticsearch : 9030 (dev - http)
+# - se_hub        : 9050 (dev - http)
+# - se_chrome     : 9051 (dev - vnc)
+# - se_chrome     : 9052 (dev - http)
+
+networks:
+    default:
+        external:
+            name: "${PROJECT_NAME}-network"
+
+volumes:
+    database:
+        external:
+            name: "${PROJECT_NAME}-database"
+    elasticsearch:
+        external:
+            name: "${PROJECT_NAME}-elasticsearch"
+#    database_migration:
+#        external:
+#            name: "${PROJECT_NAME}-migration-database"
+
+services:
+#    varnish:
+#        container_name: "${PROJECT_NAME}_varnish"
+#        image: ekyna/varnish
+#        depends_on:
+#            - nginx
+#        ports:
+#            - "80:80"
+#        volumes:
+#            - ./config/varnish:/etc/varnish:ro
+#        logging:
+#            driver: "json-file"
+#            options: { max-size: "2m", max-file: "3" }
+#        networks:
+#            default:
+#                aliases:
+#                    - varnish
+
+    nginx:
+        container_name: "${PROJECT_NAME}_nginx"
+        image: ekyna/nginx
+        depends_on:
+            - php
+        ports:
+            - "80:80"
+        volumes:
+            - ../..:/var/www:ro
+            - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "nginx.${PROJECT_NAME}"
+
+    php:
+        container_name: "${PROJECT_NAME}_php"
+        depends_on:
+            - mysql
+            - elasticsearch
+            - redis
+#            - mysql_migration
+        volumes:
+            - ../..:/var/www:rw
+            - ./config/php-fpm.conf:/etc/php7/php-fpm.conf:ro
+        environment:
+            PHP_DOCKER_ACCESS: "1"
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "php.${PROJECT_NAME}"
+
+    mysql:
+        container_name: "${PROJECT_NAME}_mysql"
+        image: ekyna/mysql
+        env_file: ./config/mysql.env
+        volumes:
+            - ../../var/backup:/backup:rw
+            - database:/var/lib/mysql:rw
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "mysql.${PROJECT_NAME}"
+
+#    mysql_migration:
+#        container_name: "${PROJECT_NAME}_mysql_migration"
+#        image: mysql:5.5
+#        environment:
+#            MYSQL_ROOT_PASSWORD: "root"
+#            MYSQL_USER: "migration"
+#            MYSQL_PASSWORD: "migration"
+#            MYSQL_DATABASE: "migration"
+#        volumes:
+#            - database_migration:/var/lib/mysql:rw
+#            - ./migration/migration.sql:/docker-entrypoint-initdb.d/db.sql:ro
+#        logging:
+#            driver: "json-file"
+#            options: { max-size: "2m", max-file: "3" }
+#        networks:
+#            default:
+#                aliases:
+#                    - mysql_migration
+
+    elasticsearch:
+        container_name: "${PROJECT_NAME}_elasticsearch"
+        image: ekyna/elasticsearch
+        volumes:
+            - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+            - ../../var/backup:/backup:rw
+            - elasticsearch:/usr/share/elasticsearch/data:rw
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "elasticsearch.${PROJECT_NAME}"
+
+    redis:
+        container_name: "${PROJECT_NAME}_redis"
+        image: redis:3.2.5-alpine
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "redis.${PROJECT_NAME}"

@@ -1,6 +1,10 @@
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
 
+ekyna_admin:
+    resource: "@EkynaAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 ekyna_cms:
     resource: "@EkynaCmsBundle/Resources/config/routing.yml"
 
@@ -15,10 +19,6 @@ ekyna_setting:
 
 ekyna_user:
     resource: "@EkynaUserBundle/Resources/config/routing.yml"
-
-ekyna_admin:
-    resource: "@EkynaAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
 
 ekyna_core:
     resource: "@EkynaCoreBundle/Resources/config/routing.yml"

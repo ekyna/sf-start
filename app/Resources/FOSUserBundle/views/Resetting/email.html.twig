@@ -1,0 +1,12 @@
+{% extends 'EkynaUserBundle::email.html.twig' %}
+
+{% block subject %}
+    {{ 'ekyna_user.email.resetting.title'|trans|raw }}
+{% endblock subject %}
+
+{% block body %}
+    {{ 'ekyna_user.email.resetting.message'|trans({
+        '%confirmationUrl%': confirmationUrl,
+        '%sitename%': sitename
+    })|raw }}
+{% endblock body %}

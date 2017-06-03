@@ -2,7 +2,7 @@ module.exports = function (grunt, options) {
     return {
         web_less: {
             files: ['src/WebBundle/Resources/private/less/**/*.less'],
-            tasks: ['less:web', 'copy:web_less', 'clean:web_post'],
+            tasks: ['less:web', 'copy:web_less', 'concat:web_less', 'clean:web_post'],
             options: {
                 spawn: false
             }

@@ -1,0 +1,21 @@
+FROM ekyna/nginx:latest
+
+MAINTAINER Etienne Dauvergne <contact@ekyna.com>
+
+RUN addgroup backend -g 1001 \
+ && adduser -D -u 1001 -h /var/www -s /sbin/nologin -G backend backend
+
+WORKDIR /var/www
+
+COPY web/.htaccess web/.htaccess
+COPY web/apple-touch-icon.png web/apple-touch-icon.png
+COPY web/browserconfig.xml web/browserconfig.xml
+COPY web/favicon.ico web/favicon.ico
+COPY web/robots.txt web/robots.txt
+COPY web/js/app.min.js web/js/app.min.js
+
+RUN mkdir web/cache \
+ && mkdir web/bundles \
+ && mkdir web/tinymce \
+ && chown -Rf backend:backend /var/www
+

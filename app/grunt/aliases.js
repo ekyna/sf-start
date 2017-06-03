@@ -1,6 +1,6 @@
 module.exports = {
     'default': [
-        'tsd',
+        'typings',
         'build'
     ],
     'build': [

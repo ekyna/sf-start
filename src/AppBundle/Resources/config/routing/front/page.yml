@@ -20,6 +20,7 @@ app_page_about:
             menus: [main, footer]
             locked: false
             advanced: true
+            position: 90
 
 app_page_about_case_studies:
     path: /a-propos/etude-de-cas

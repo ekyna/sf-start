@@ -1,0 +1,23 @@
+{% extends "EkynaUserBundle::layout.html.twig" %}
+
+{% block account %}
+<h3>{{ 'ekyna_user.account.profile.edit'|trans }}</h3>
+<hr>
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+    <div class="form-body">
+        {% include "EkynaUserBundle:Profile:edit_content.html.twig" %}
+        <div class="form-footer">
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-ok"></span> {{ 'ekyna_core.button.save'|trans }}
+                    </button>
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span> {{ 'ekyna_core.button.cancel'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock account %}

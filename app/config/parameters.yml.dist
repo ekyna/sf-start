@@ -1,11 +1,12 @@
 parameters:
     hostname:          ~
+    docker_name:       start
 
     database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
+    database_host:     "mysql.%docker_name%"
+    database_port:     3306
+    database_name:     ~
+    database_user:     ~
     database_password: ~
 
     mailer_transport:  smtp
@@ -33,5 +34,11 @@ parameters:
     router.request_context.host: "%hostname%"
     router.request_context.scheme: http
     router.request_context.base_url: ~
+
+    redis.host: "redis.%docker_name%"
+
+    elasticsearch.host: "elasticsearch.%docker_name%"
+    elasticsearch.port: 9030
+    elasticsearch.index_name: "%hostname%"
 
     error_report_mail: support@ekyna.com

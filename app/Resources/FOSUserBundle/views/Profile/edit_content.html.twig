@@ -1,0 +1,16 @@
+{{ bootstrap_set_style('horizontal') }}
+{{ bootstrap_set_col_size('md') }}
+{{ form_errors(form) }}
+{{ form_row(form.email, {'label_col': 3, 'widget_col': 9, 'label': 'ekyna_core.field.email'|trans}) }}
+<div class="row">
+    {% if form.username is defined %}
+    <div class="col-md-6">
+        {{ form_row(form.username, {'label_col': 6, 'widget_col': 6, 'label': 'ekyna_core.field.username'|trans}) }}
+    </div>
+    {% endif %}
+    <div class="col-md-6">
+        {{ form_row(form.current_password, {'label_col': 6, 'widget_col': 6, 'label': 'ekyna_user.account.password.current'|trans}) }}
+    </div>
+</div>
+<hr>
+{{ form_rest(form) }}

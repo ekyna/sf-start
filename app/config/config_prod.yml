@@ -1,17 +1,30 @@
 imports:
     - { resource: config.yml }
 
-#framework:
-#    validation:
-#        cache: validator.mapping.cache.doctrine.apc
-#    serializer:
-#        cache: serializer.mapping.cache.apc
+services:
+    validator.mapping.cache.apcu.cache:
+        class: Doctrine\Common\Cache\ApcuCache
+        calls:
+            - [setNamespace, ["%validator.mapping.cache.prefix%"]]
+    validator.mapping.cache.apcu:
+        class: Symfony\Component\Validator\Mapping\Cache\DoctrineCache
+        arguments:
+            - "@validator.mapping.cache.apcu.cache"
+    serializer.mapping.cache.apcu:
+        class: Doctrine\Common\Cache\ApcuCache
 
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
+framework:
+    validation:
+        cache: validator.mapping.cache.apcu
+    serializer:
+        cache: serializer.mapping.cache.apcu
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                metadata_cache_driver:
+                    type: apcu
 
 monolog:
     handlers:

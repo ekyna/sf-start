@@ -151,7 +151,7 @@ class PageController extends Controller
 
         $results = $this->get('ekyna_cms.wide_search')->search($expression);
 
-        return $this->render('AppBundle:Page:search.html.twig', array(
+        return $this->render('WebBundle:Page:search.html.twig', array(
             'expression' => $expression,
             'results'    => $results,
         ))->setPrivate();

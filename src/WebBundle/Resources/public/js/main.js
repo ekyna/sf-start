@@ -1,1 +1,55 @@
-require(["require","jquery","ekyna-cms/user","ekyna-social-buttons/share","bootstrap","bootstrap/hover-dropdown"],function(a,b,c){function d(){b("body").css({paddingBottom:b("#footer").outerHeight()})}c.init();var e=b(".form-body");e.size()>0&&a(["ekyna-form"],function(a){e.each(function(b,c){var d=a.create(c);d.init()})});var f=null;b(window).on("resize",function(){f&&clearTimeout(f),f=setTimeout(d,200)}),b(document).ready(function(){d()})});
+require([
+    'require',
+    'jquery',
+    'ekyna-cms/user',
+    'ekyna-user/user-widget',
+    'ekyna-media-player',
+    'ekyna-dispatcher',
+    'aos',
+    'ekyna-social-buttons/share',
+    'bootstrap',
+    'bootstrap/hover-dropdown'
+],
+function(require, $, User, UserWidget, MediaPlayer, Dispatcher, AOS) {
+
+    User.init();
+
+    UserWidget.initialize().enable();
+
+    MediaPlayer.init();
+
+    /*Dispatcher.on('ekyna_user.user_status', function(e) {
+        console.log('User status : ' + e.authenticated);
+    });*/
+
+    AOS.init({
+        offset: 200
+    });
+
+    // Forms
+    var $forms = $('.form-body');
+    if ($forms.size() > 0) {
+        require(['ekyna-form'], function(Form) {
+            $forms.each(function(i, f) {
+                var form = Form.create(f);
+                form.init();
+            });
+        });
+    }
+
+    // Sticky footer
+    function stickyFooter() {
+        $('body').css({paddingBottom: $('#footer').outerHeight()});
+    }
+    var resizeTimeout = null;
+    $(window).on('resize', function() {
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        resizeTimeout = setTimeout(stickyFooter, 200);
+    });
+
+    $(document).ready(function () {
+        stickyFooter();
+    });
+});

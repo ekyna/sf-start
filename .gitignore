@@ -1,4 +1,8 @@
+/.idea/
 /app/config/parameters.yml
+/bin/
+!/bin/console
+!/bin/symfony_requirements
 /var/*
 !/var/cache
 /var/cache/*
@@ -16,10 +20,18 @@
 
 /web/bundles/
 /web/js/
+!/web/js/app.min.js
 /web/cache/
-/web/tinymce
+/web/tinymce/
 
 /vendor/
 /node_modules
 /bower_components
-/src/typings
+/typings/
+/src/typings/
+/src/WebBundle/Resources/public/tmp/
+.baseDir.**
+/rez/
+
+/docker_logs.txt
+/web/build.js
