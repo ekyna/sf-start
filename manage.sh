@@ -129,8 +129,7 @@ Backup() {
     docker exec ${PROJECT_NAME}_mysql ./backup.sh >> ${LOG_PATH} 2>&1
     if [[ $? -eq 0 ]]
     then
-        # TODO Get ride of file rename
-        mv var/backup/start_dump.sql var/backup/${DATE}/database.sql
+        mv var/backup/dump.sql var/backup/${DATE}/database.sql
         printf "\e[32mdone\e[0m\n"
     else
         printf "\e[31merror\e[0m\n"
@@ -145,8 +144,7 @@ Backup() {
         docker exec ${PROJECT_NAME}_mysql_test ./backup.sh >> ${LOG_PATH} 2>&1
         if [[ $? -eq 0 ]]
         then
-            # TODO Get ride of file rename
-            mv var/backup/start_test_dump.sql var/backup/${DATE}/test_database.sql
+            mv var/backup/dump.sql var/backup/${DATE}/test_database.sql
             printf "\e[32mdone\e[0m\n"
         else
             printf "\e[31merror\e[0m\n"

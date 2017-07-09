@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd4f5cdd956f587327bc74faf31ea9c3",
+    "content-hash": "4f09bfadb5e325a499da3576ee9193e2",
     "packages": [
         {
             "name": "a2lix/auto-form-bundle",
@@ -184,21 +184,15 @@
         },
         {
             "name": "braincrafted/bootstrap-bundle",
-            "version": "dev-develop",
+            "version": "dev-form-sizing",
             "target-dir": "Braincrafted/Bundle/BootstrapBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/braincrafted/bootstrap-bundle.git",
-                "reference": "4367295d62d9ca4190fdf9e944148c19e04d0aa7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/braincrafted/bootstrap-bundle/zipball/4367295d62d9ca4190fdf9e944148c19e04d0aa7",
-                "reference": "4367295d62d9ca4190fdf9e944148c19e04d0aa7",
-                "shasum": ""
+                "url": "https://github.com/ekyna/bootstrap-bundle.git",
+                "reference": "87c8480fe8b28e55b305fb7a20e6c73a02361471"
             },
             "require": {
-                "php": ">=5.3.3",
+                "php": ">=5.6",
                 "symfony/console": "~2.6|~3.0",
                 "symfony/finder": "~2.6|~3.0",
                 "symfony/form": "~2.6|~3.0",
@@ -211,8 +205,9 @@
                 "knplabs/knp-menu-bundle": "~2.0@alpha",
                 "knplabs/knp-paginator-bundle": "dev-master",
                 "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~3.7",
-                "symfony/assetic-bundle": "~2.6|~3.0"
+                "phpunit/phpunit": "~5.0",
+                "symfony/assetic-bundle": "~2.6|~3.0",
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "suggest": {
                 "knplabs/knp-menu": "Required to use KnpMenuBundle.",
@@ -226,7 +221,6 @@
                     "Braincrafted\\Bundle\\BootstrapBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -241,7 +235,7 @@
             "keywords": [
                 "bootstrap"
             ],
-            "time": "2016-10-10T21:30:05+00:00"
+            "time": "2017-06-10 19:28:11"
         },
         {
             "name": "composer/ca-bundle",
@@ -1330,12 +1324,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/AdminBundle.git",
-                "reference": "5d8ef4ee1c847786ab8c0a01f7d71939f7595f7f"
+                "reference": "9dbecc64d93326122b336d43174aaa1e94354b10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/AdminBundle/zipball/5d8ef4ee1c847786ab8c0a01f7d71939f7595f7f",
-                "reference": "5d8ef4ee1c847786ab8c0a01f7d71939f7595f7f",
+                "url": "https://api.github.com/repos/ekyna/AdminBundle/zipball/9dbecc64d93326122b336d43174aaa1e94354b10",
+                "reference": "9dbecc64d93326122b336d43174aaa1e94354b10",
                 "shasum": ""
             },
             "require": {
@@ -1373,7 +1367,7 @@
                 "bundle",
                 "symfony"
             ],
-            "time": "2017-05-31 15:23:51"
+            "time": "2017-07-02 19:27:20"
         },
         {
             "name": "ekyna/cms-bundle",
@@ -1381,12 +1375,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/CmsBundle.git",
-                "reference": "86ab8a35266ec6b762ce58cd0a892358e94d8433"
+                "reference": "2f010d8c990b0d6400c9c97c24acb12833af4588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/CmsBundle/zipball/86ab8a35266ec6b762ce58cd0a892358e94d8433",
-                "reference": "86ab8a35266ec6b762ce58cd0a892358e94d8433",
+                "url": "https://api.github.com/repos/ekyna/CmsBundle/zipball/2f010d8c990b0d6400c9c97c24acb12833af4588",
+                "reference": "2f010d8c990b0d6400c9c97c24acb12833af4588",
                 "shasum": ""
             },
             "require": {
@@ -1417,7 +1411,7 @@
                 "content",
                 "symfony"
             ],
-            "time": "2017-05-29 20:20:33"
+            "time": "2017-07-03 14:28:19"
         },
         {
             "name": "ekyna/core-bundle",
@@ -1425,17 +1419,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/CoreBundle.git",
-                "reference": "ea22cffad365e4773e73e102c41d9fef14603dc7"
+                "reference": "7c9e5159e9138099d006ce69ba8058d810c043cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/CoreBundle/zipball/ea22cffad365e4773e73e102c41d9fef14603dc7",
-                "reference": "ea22cffad365e4773e73e102c41d9fef14603dc7",
+                "url": "https://api.github.com/repos/ekyna/CoreBundle/zipball/7c9e5159e9138099d006ce69ba8058d810c043cb",
+                "reference": "7c9e5159e9138099d006ce69ba8058d810c043cb",
                 "shasum": ""
             },
             "require": {
                 "a2lix/translation-form-bundle": "3.x-dev",
-                "braincrafted/bootstrap-bundle": "dev-develop",
+                "braincrafted/bootstrap-bundle": "dev-form-sizing",
                 "doctrine/doctrine-bundle": "^1.6",
                 "doctrine/doctrine-cache-bundle": "^1.2",
                 "doctrine/orm": "^2.5",
@@ -1475,7 +1469,7 @@
                 "bundle",
                 "symfony"
             ],
-            "time": "2017-06-02 15:36:33"
+            "time": "2017-06-02T15:36:33+00:00"
         },
         {
             "name": "ekyna/google-bundle",
@@ -1571,12 +1565,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/MediaBundle.git",
-                "reference": "3d169b787a3b117804d7ba205e28ead1d376be2d"
+                "reference": "e739990fbfb640ed47c8cd5fcd45f1c45f37b55a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/MediaBundle/zipball/3d169b787a3b117804d7ba205e28ead1d376be2d",
-                "reference": "3d169b787a3b117804d7ba205e28ead1d376be2d",
+                "url": "https://api.github.com/repos/ekyna/MediaBundle/zipball/e739990fbfb640ed47c8cd5fcd45f1c45f37b55a",
+                "reference": "e739990fbfb640ed47c8cd5fcd45f1c45f37b55a",
                 "shasum": ""
             },
             "require": {
@@ -1607,7 +1601,7 @@
                 "Symfony2",
                 "bundle"
             ],
-            "time": "2017-05-28 12:58:27"
+            "time": "2017-07-02 19:30:24"
         },
         {
             "name": "ekyna/require-js-bundle",
@@ -1615,12 +1609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/RequireJsBundle.git",
-                "reference": "acde81db4fe46635146d912759504e16f5668ee7"
+                "reference": "3b681041a0b0f0a432b3a597d69835cdf9039b37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/RequireJsBundle/zipball/acde81db4fe46635146d912759504e16f5668ee7",
-                "reference": "acde81db4fe46635146d912759504e16f5668ee7",
+                "url": "https://api.github.com/repos/ekyna/RequireJsBundle/zipball/3b681041a0b0f0a432b3a597d69835cdf9039b37",
+                "reference": "3b681041a0b0f0a432b3a597d69835cdf9039b37",
                 "shasum": ""
             },
             "require": {
@@ -1650,7 +1644,7 @@
                 "requirejs",
                 "symfony"
             ],
-            "time": "2017-05-28 12:58:47"
+            "time": "2017-07-04 08:21:28"
         },
         {
             "name": "ekyna/resource",
@@ -1658,12 +1652,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/Resource.git",
-                "reference": "f795394ee7733c0c4c47595b9e319e31739a7f6f"
+                "reference": "450cc36df29f5f4a34a6fbc5e2af44332e4e8045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/Resource/zipball/f795394ee7733c0c4c47595b9e319e31739a7f6f",
-                "reference": "f795394ee7733c0c4c47595b9e319e31739a7f6f",
+                "url": "https://api.github.com/repos/ekyna/Resource/zipball/450cc36df29f5f4a34a6fbc5e2af44332e4e8045",
+                "reference": "450cc36df29f5f4a34a6fbc5e2af44332e4e8045",
                 "shasum": ""
             },
             "require": {
@@ -1698,7 +1692,7 @@
                 "php",
                 "resource"
             ],
-            "time": "2017-05-29 15:24:34"
+            "time": "2017-06-23 11:51:51"
         },
         {
             "name": "ekyna/resource-bundle",
@@ -1706,12 +1700,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/ResourceBundle.git",
-                "reference": "8c3a1e11f11e62e6e04519bf61e2d90d4461eeef"
+                "reference": "2d4aed144cb691b5973386644dd9bf69b358dc9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/ResourceBundle/zipball/8c3a1e11f11e62e6e04519bf61e2d90d4461eeef",
-                "reference": "8c3a1e11f11e62e6e04519bf61e2d90d4461eeef",
+                "url": "https://api.github.com/repos/ekyna/ResourceBundle/zipball/2d4aed144cb691b5973386644dd9bf69b358dc9d",
+                "reference": "2d4aed144cb691b5973386644dd9bf69b358dc9d",
                 "shasum": ""
             },
             "require": {
@@ -1743,7 +1737,7 @@
                 "resource",
                 "symfony"
             ],
-            "time": "2017-05-28T12:58:58+00:00"
+            "time": "2017-06-11 19:41:45"
         },
         {
             "name": "ekyna/setting-bundle",
@@ -1882,12 +1876,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/Table.git",
-                "reference": "bfde691fbf193509fd0cae7632cc2ad9aabccc09"
+                "reference": "5ffb8437454ce23f6ec5a3a4b044acbe76ed76cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/Table/zipball/bfde691fbf193509fd0cae7632cc2ad9aabccc09",
-                "reference": "bfde691fbf193509fd0cae7632cc2ad9aabccc09",
+                "url": "https://api.github.com/repos/ekyna/Table/zipball/5ffb8437454ce23f6ec5a3a4b044acbe76ed76cd",
+                "reference": "5ffb8437454ce23f6ec5a3a4b044acbe76ed76cd",
                 "shasum": ""
             },
             "require": {
@@ -1919,7 +1913,7 @@
             ],
             "description": "Generates html table from various sources",
             "homepage": "https://github.com/ekyna/Table",
-            "time": "2017-06-01 12:51:30"
+            "time": "2017-07-06 09:00:04"
         },
         {
             "name": "ekyna/table-bundle",
@@ -1927,12 +1921,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/TableBundle.git",
-                "reference": "7767486be5dbff7072eed0b886aa235528b12e74"
+                "reference": "45ba9de0dee6c918b4801da25d1a0e3f08c64fee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/TableBundle/zipball/7767486be5dbff7072eed0b886aa235528b12e74",
-                "reference": "7767486be5dbff7072eed0b886aa235528b12e74",
+                "url": "https://api.github.com/repos/ekyna/TableBundle/zipball/45ba9de0dee6c918b4801da25d1a0e3f08c64fee",
+                "reference": "45ba9de0dee6c918b4801da25d1a0e3f08c64fee",
                 "shasum": ""
             },
             "require": {
@@ -1964,7 +1958,7 @@
                 "symfony",
                 "table"
             ],
-            "time": "2017-05-29 15:26:05"
+            "time": "2017-07-06 09:15:26"
         },
         {
             "name": "ekyna/user-bundle",
@@ -1972,12 +1966,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/UserBundle.git",
-                "reference": "86b8e9391471838cd17ad3613ed305c5f7a2873e"
+                "reference": "a74c6518a365d1e4725bc2ece6985e2f1ddd320f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/UserBundle/zipball/86b8e9391471838cd17ad3613ed305c5f7a2873e",
-                "reference": "86b8e9391471838cd17ad3613ed305c5f7a2873e",
+                "url": "https://api.github.com/repos/ekyna/UserBundle/zipball/a74c6518a365d1e4725bc2ece6985e2f1ddd320f",
+                "reference": "a74c6518a365d1e4725bc2ece6985e2f1ddd320f",
                 "shasum": ""
             },
             "require": {
@@ -2008,7 +2002,7 @@
                 "symfony",
                 "user"
             ],
-            "time": "2017-05-31 19:46:25"
+            "time": "2017-07-06 09:15:07"
         },
         {
             "name": "friendsofsymfony/elastica-bundle",
@@ -6258,12 +6252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekyna/Behat.git",
-                "reference": "ae4dceab5d44759b89246fa4a66320e4268bcb37"
+                "reference": "9cdb0f7da3b1cbc08f8bb1d30ac461fa4993dc46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekyna/Behat/zipball/ae4dceab5d44759b89246fa4a66320e4268bcb37",
-                "reference": "ae4dceab5d44759b89246fa4a66320e4268bcb37",
+                "url": "https://api.github.com/repos/ekyna/Behat/zipball/9cdb0f7da3b1cbc08f8bb1d30ac461fa4993dc46",
+                "reference": "9cdb0f7da3b1cbc08f8bb1d30ac461fa4993dc46",
                 "shasum": ""
             },
             "require": {
@@ -6294,7 +6288,7 @@
                 "Behat",
                 "library"
             ],
-            "time": "2017-05-28T12:57:04+00:00"
+            "time": "2017-07-02 20:36:42"
         },
         {
             "name": "fzaninotto/faker",

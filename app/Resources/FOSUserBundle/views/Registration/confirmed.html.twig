@@ -8,7 +8,7 @@
             <p>{{ 'ekyna_user.account.registration.confirmed.message'|trans|raw }}</p>
             <p>
                 {% if targetUrl %}
-                    <a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a>
+                    <a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>
                 {% else %}
                     <a href="{{ path('ekyna_user_account_index') }}">
                         {{ 'registration.back'|trans({}, 'FOSUserBundle') }}

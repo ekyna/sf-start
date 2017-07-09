@@ -1,5 +1,4 @@
 parameters:
-    hostname:          ~
     docker_name:       start
 
     database_driver:   pdo_mysql
@@ -31,14 +30,11 @@ parameters:
     reverse_proxy.host: 127.0.0.1
     reverse_proxy.port: 80
 
-    router.request_context.host: "%hostname%"
-    router.request_context.scheme: http
-    router.request_context.base_url: ~
+    redis.host: "redis.%dockername%"
+    redis.port: 6379
 
-    redis.host: "redis.%docker_name%"
-
-    elasticsearch.host: "elasticsearch.%docker_name%"
-    elasticsearch.port: 9030
-    elasticsearch.index_name: "%hostname%"
+    elasticsearch.host: "elasticsearch.%dockername%"
+    elasticsearch.port: 9200
+    elasticsearch.index_name: ~
 
     error_report_mail: support@ekyna.com

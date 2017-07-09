@@ -71,6 +71,10 @@
         {
             "type": "git",
             "url": "https://github.com/ekyna/JMSI18nRoutingBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/ekyna/bootstrap-bundle.git"
         }
     ],
     "minimum-stability": "dev",

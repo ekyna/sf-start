@@ -5,7 +5,7 @@
 <hr>
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
     <div class="form-body">
-        {% include "EkynaUserBundle:Profile:edit_content.html.twig" %}
+        {% include "@FOSUser/Profile/edit_content.html.twig" %}
         <div class="form-footer">
             <div class="form-group row">
                 <div class="col-sm-offset-2 col-sm-10">

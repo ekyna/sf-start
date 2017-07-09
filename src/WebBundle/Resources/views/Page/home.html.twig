@@ -2,6 +2,6 @@
 
 {% block breadcrumb -%}
     <div class="container">
-        {{ cms_flashes() }}
+        {% include "EkynaCoreBundle:Ui:flashes.html.twig" %}
     </div>
 {%- endblock breadcrumb %}
