@@ -1,9 +1,9 @@
 module.exports = {
     'default': [
-        'typings',
         'build'
     ],
     'build': [
+        'build:app',
         'build:web'
     ]
 };

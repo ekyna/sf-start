@@ -8,21 +8,18 @@
             "AppBundle\\": "src/AppBundle/",
             "WebBundle\\": "src/WebBundle/"
         },
-        "classmap": [
-            "app/AppKernel.php",
-            "app/AppCache.php"
-        ]
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
         "php": ">=7.0",
-        "symfony/symfony": "3.1.7",
+        "symfony/symfony": "3.3.*",
         "doctrine/orm": "2.5.5",
         "doctrine/common": "2.6.2",
         "doctrine/dbal": "2.5.5",
 
-        "symfony/swiftmailer-bundle": "^2.3",
+        "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/monolog-bundle": "^2.8",
-        "sensio/distribution-bundle": "^5.0",
+        "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "twig/extensions": "^1.3",
@@ -30,8 +27,7 @@
         "snc/redis-bundle": "~2.0",
         "predis/predis": "~1.0",
         "ekyna/cms-bundle": "0.7.x-dev",
-        "ekyna/social-buttons-bundle": "0.7.x-dev",
-        "misd/phone-number-bundle": "^1.2"
+        "ekyna/social-buttons-bundle": "0.7.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -39,29 +35,25 @@
         "hautelook/alice-bundle": "^1.2",
         "symfony/phpunit-bridge": "^3.0",
         "phpunit/phpunit": "^5.3",
-        "ekyna/behat": "0.7.x-dev"
+        "ekyna/behat": "0.7.x-dev",
+        "behat/mink-selenium2-driver": "~1.3"
     },
     "scripts": {
-        "post-root-package-install": [
-            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        "symfony-scripts": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "@symfony-scripts"
         ],
         "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "@symfony-scripts"
         ],
-        "docker-build-cmd": [
+        "docker-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
@@ -80,11 +72,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "bin-dir": "bin",
-        "optimize-autoloader": true,
         "platform": {
-            "php": "7.0.15"
-        }
+            "php": "7.1.7"
+        },
+        "bin-dir": "bin",
+        "optimize-autoloader" : true
     },
     "extra": {
         "symfony-app-dir": "app",

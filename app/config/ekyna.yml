@@ -24,15 +24,10 @@ ekyna_admin:
 #                table: AppBundle\Table\Type\ExampleType
 
 ekyna_user:
-#    templates:
-#        email: 'WebBundle:Email:base.html.twig'
-    account:
-        enable: true
-#        register: true
-#        resetting: true
-#        profile: true
     notification:
         admin_login: false
+    account:
+        enable: true
 
 ekyna_cms:
     home_route: app_page_home
@@ -45,6 +40,7 @@ ekyna_cms:
             default:
                 title: Par défault
                 value: AppBundle:Page:default
+                advanced: true
         cookie_consent:
             enable: true
             controller: AppBundle:Page:default
@@ -59,13 +55,13 @@ ekyna_cms:
             footer:
                 title: Pied de page
                 description: Menu du pied de page.
+    slide_show:
+        static:
+            home: Accueil
 
 ekyna_core:
     cache:
-        default_smaxage: 21600 # 6h
-        tag:
-            secret: "%secret%"
-            encode: true
+        enable: false
     ui:
         stylesheets:
             fonts:
@@ -73,11 +69,18 @@ ekyna_core:
             contents:
                 - 'bundles/web/css/content.css'
         colors:
-            primary: 337ab7
-            success: 5cb85c
-            info:    5bc0de
-            warning: f0ad4e
-            danger:  d9534f
+            black:       1a1917
+            white:       ffffff
+            beige-light: f5f2f0
+            beige:       ded8d1
+            beige-dark:  ccc5bc
+            orange:      ff6600
+            primary:     154890
+            secondary:   6699ff
+            success:     5cb85c
+            info:        5bc0de
+            warning:     f0ad4e
+            danger:      d9534f
         tinymce:
             base_formats: bootstrap
             custom_formats:
@@ -87,7 +90,18 @@ ekyna_core:
                         -
                             title: 'Title'
                             items:
-                                - {title: 'Blue', selector : 'h1,h2,h3,h4,h5,h6', styles: {color: 'blue'}}
+                                - {title: 'Hero', selector: 'h1,h2,h3,h4', classes: 'title-hero'}
+
+#ekyna_commerce:
+#    default:
+#        company_logo: 'bundles/web/img/logo.svg'
+#        country: 'FR'
+#        currency: 'EUR'
+#        customer:
+#            birthday: false
+#    pricing:
+#        provider:
+#            europa: true
 
 #ekyna_social_buttons:
 #    links:
@@ -98,7 +112,7 @@ ekyna_core:
 ekyna_google:
     client:
         application_name: Test project
-        developer_key: AIzaSyBQXhYai0pkg-ZhaBmP36372n1GZSw4qfo
-        client_id: ""
-        client_secret: ""
-        redirect_uri: ""
+        developer_key: "%google.developer_key%"
+        client_id: ~
+        client_secret: ~
+        redirect_uri: ~

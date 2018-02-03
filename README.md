@@ -5,14 +5,10 @@ Starting a symfony project with ekyna's bundles.
 
 ## Installation
 
-Create app/config/parameters.yml file.
+Configure the project (replace "__start__" occurrences with your project name):
 
-Configure the project (replace "__start__" occurrences with your project name) in files:
-
-- etc/docker/config/.env
-- etc/docker/config/mysql.env
-- etc/docker/config/elasticsearch.yml
 - etc/docker/config/dev/xdebug.ini
+- etc/docker/elastic/elasticsearch.yml
 
 Run commands:
 

@@ -2,8 +2,13 @@ FROM ekyna/php7-fpm:7.0.15
 
 MAINTAINER Etienne Dauvergne <contact@ekyna.com>
 
-RUN addgroup backend -g 1001 \
- && adduser -D -u 1001 -h /var/www -s /bin/bash -G backend backend
+ARG user
+ARG uid
+ARG group
+ARG gid
+
+RUN addgroup $group -g $gid \
+ && adduser -D -u $uid -h /var/www -s /bin/bash -G $group $user
 
 WORKDIR /var/www
 
@@ -29,11 +34,6 @@ RUN mkdir var \
  && mkdir web/cache \
  && mkdir web/bundles \
  && mkdir web/tinymce \
- && chown -Rf backend:backend /var/www \
+ && mkdir vendor \
+ && chown -Rf $user:$group /var/www \
  && chmod +x backup.sh restore.sh
-
-RUN su backend -c "composer install --prefer-dist --no-interaction --no-autoloader --no-dev --no-scripts --no-progress --no-suggest" \
- && su backend -c "composer dump-autoload --optimize" \
- && su backend -c "composer run-script docker-build-cmd"
-
-# TODO files permissions (chmod)

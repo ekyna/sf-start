@@ -1,0 +1,29 @@
+version: '2'
+
+networks:
+    default:
+        external:
+            name: "${PROJECT_NAME}-network"
+
+
+services:
+    # https://hub.docker.com/r/atmoz/sftp/
+    sftp:
+        container_name: "${PROJECT_NAME}_sftp"
+        image: atmoz/sftp:alpine
+        volumes:
+            - ../..:/home/foo/www
+        ports:
+            - "9040:22"
+        command: foo:pass:1001
+
+    # https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+    phpmyadmin:
+        container_name: "${PROJECT_NAME}_phpmyadmin"
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_HOST=mysql
+        ports:
+            - "9050:80"
+        external_links:
+            - "${PROJECT_NAME}_mysql:mysql"

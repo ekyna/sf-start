@@ -8,8 +8,8 @@ framework:
     profiler: { only_exceptions: false }
 
 web_profiler:
-    toolbar: "%debug_toolbar%"
-    intercept_redirects: "%debug_redirects%"
+    toolbar: true
+    intercept_redirects: false
 
 monolog:
     handlers:
@@ -18,10 +18,11 @@ monolog:
             max_files: 10
             path:      "%kernel.logs_dir%/%kernel.environment%.log"
             level:     debug
-            channels:  [!event]
+            channels:  ['!event', '!migration']
         console:
             type:      console
-            channels:  [!event, !doctrine]
+            process_psr_3_messages: false
+            channels: ['!event', '!doctrine', '!console', '!migration']
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:
@@ -38,6 +39,6 @@ hautelook_alice:
     locale: fr_FR
     seed: 465987
 
-ekyna_core:
-    cache:
-        enable: false
+#ekyna_core:
+#    cache:
+#        enable: false

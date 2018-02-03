@@ -3,36 +3,38 @@ version: '2'
 volumes:
     database_test:
         external:
-            name: "${PROJECT_NAME}-test-database"
+            name: "${COMPOSE_PROJECT_NAME}-database-test"
 
 services:
-#    nginx:
-#        ports:
-#            - "8000:80"
-
     php:
-        image: ekyna/php7-fpm-dev:7.0.15
+        image: ekyna/php7-fpm-dev:7.1.12
         depends_on:
             - mysql_test
         ports:
             - "9000:22"
         volumes:
-            - ./config/dev/php.ini:/etc/php7/conf.d/90-custom.ini:ro
-            - ./config/dev/xdebug.ini:/etc/php7/conf.d/xdebug.ini:ro
+            - ./php/dev/php.ini:/etc/php7/conf.d/90-custom.ini:ro
+            - ./php/dev/xdebug.ini:/etc/php7/conf.d/xdebug.ini:ro
         environment:
-            PHP_IDE_CONFIG: "serverName=${PROJECT_NAME}.dev"
+            PHP_IDE_CONFIG: "serverName=${COMPOSE_PROJECT_NAME}.local"
 
     mysql:
         ports:
-            - "9020:3306"
+            - "9010:3306"
 
     mysql_test:
-        container_name: "${PROJECT_NAME}_mysql_test"
-        image: ekyna/mysql
-        env_file: ./config/mysql.env
+        container_name: "${COMPOSE_PROJECT_NAME}_mysql_test"
+        image: mysql:5.6
+        environment:
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+            MYSQL_USER: "${MYSQL_USER}"
+            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+            MYSQL_DATABASE: "${MYSQL_DATABASE}"
+        working_dir: /root
         ports:
-            - "9021:3306"
+            - "9011:3306"
         volumes:
+            - ./mysql/mysql_backup.sh:/root/backup.sh:ro
             - database_test:/var/lib/mysql:rw
             - ../../var/backup:/backup:rw
         logging:
@@ -41,32 +43,31 @@ services:
         networks:
             default:
                 aliases:
-                    - "mysql_test.${PROJECT_NAME}"
-#
+                    - "mysql_test.${COMPOSE_PROJECT_NAME}"
+
 #    mysql_migration:
 #        ports:
-#            - "3308:3306"
+#            - "9012:3306"
 
     elasticsearch:
         ports:
-            - "9030:9200" # HTTP
-#            - "9031:9300" # TCP
+            - "9020:9200" # HTTP
+#            - "9300:9300" # TCP
 
-    # http://blog.zol.fr/2016/04/06/docker-selenium-behat/
     se_hub:
-        container_name: "${PROJECT_NAME}_se_hub"
+        container_name: "${COMPOSE_PROJECT_NAME}_se_hub"
         image: selenium/hub:3.4.0
         ports:
-            - "9050:4444"
+            - "9030:4444"
         expose:
             - "4444"
     se_chrome:
-        container_name: "${PROJECT_NAME}_se_chrome"
+        container_name: "${COMPOSE_PROJECT_NAME}_se_chrome"
         image: selenium/node-chrome-debug:3.4.0
         ports:
-            # Port for VNC only
-            - "9051:5900"
-            - "9052:5555"
+            # Port is used for VNC only (password is "secret")
+            - "9031:5900"
+            - "9032:5555"
         expose:
             - "5555"
         links:

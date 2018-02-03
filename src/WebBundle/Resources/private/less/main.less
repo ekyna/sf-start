@@ -97,6 +97,33 @@ body {
     }
 }
 
+svg {
+    &.light {
+        path, polyline, polygon, rect, circle, ellipse, line, text, use, g {
+            fill: #ffffff;
+        }
+    }
+
+    &.dark {
+        path, polyline, polygon, rect, circle, ellipse, line, text, use, g {
+            fill: @headings-color;
+        }
+    }
+}
+
+.cms-background {
+    &.dark {
+        background-color: #000;
+        color: #fff;
+    }
+    &.light {
+        background-color: #fff;
+        color: #000;
+    }
+}
+
 @import "../../../../../vendor/ekyna/core-bundle/Resources/private/less/ui.less";
-@import "../../../../../vendor/ekyna/user-bundle/Resources/private/less/user-widget.less";
+@import "../../../../../vendor/ekyna/user-bundle/Resources/private/less/user.less";
 @import "../../../../../vendor/ekyna/cms-bundle/Resources/private/less/bootstrap-content.less";
+@import "../../../../../vendor/ekyna/cms-bundle/Resources/private/less/slide-show.less";
+//@import "../../../../../vendor/ekyna/commerce-bundle/Resources/private/less/cart-widget.less";

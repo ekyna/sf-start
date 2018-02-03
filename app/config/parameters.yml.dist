@@ -1,8 +1,8 @@
 parameters:
-    docker_name:       start
+    dockername:       start
 
     database_driver:   pdo_mysql
-    database_host:     "mysql.%docker_name%"
+    database_host:     "mysql.%dockername%"
     database_port:     3306
     database_name:     ~
     database_user:     ~
@@ -18,23 +18,34 @@ parameters:
 
     locale:            fr
     locales:           [fr, en]
-    secret:            ThisTokenIsNotSoSecretChangeIt
 
+    secret:            ThisTokenIsNotSoSecretChangeIt
     cache:             file_system
     wkhtmltopdf_path:  /usr/bin/wkhtmltopdf
-
-    debug_toolbar:          true
-    debug_redirects:        false
+    wkhtmltoimage_path: /usr/bin/wkhtmltoimage
 
     reverse_proxy.enable: false
-    reverse_proxy.host: 127.0.0.1
+    reverse_proxy.host: varnish
     reverse_proxy.port: 80
+
+    router.request_context.host: start.local
+    router.request_context.scheme: http
 
     redis.host: "redis.%dockername%"
     redis.port: 6379
 
     elasticsearch.host: "elasticsearch.%dockername%"
     elasticsearch.port: 9200
-    elasticsearch.index_name: ~
+    elasticsearch.index_name: start
 
-    error_report_mail: support@ekyna.com
+    error_report_mail: support@tablette-store.com
+
+    google.developer_key: ~
+    google.client_id: ~
+    google.client_secret: ~
+    google.redirect_uri: ~
+
+    oauth.google.id: ~
+    oauth.google.secret: ~
+    oauth.facebook.id: ~
+    oauth.facebook.secret: ~

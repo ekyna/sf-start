@@ -1,8 +1,19 @@
+.baseDir.**
+/.cache/
+/.composer/
 /.idea/
+
 /app/config/parameters.yml
+
 /bin/
 !/bin/console
 !/bin/symfony_requirements
+
+/dev/docker/.env
+/dev/build/.env
+/dev/docker/migration/database.sql
+/docker_logs.txt
+
 /var/*
 !/var/cache
 /var/cache/*
@@ -20,18 +31,11 @@
 
 /web/bundles/
 /web/js/
-!/web/js/app.min.js
 /web/cache/
 /web/tinymce/
+/web/build.js
+/web/test.php
 
 /vendor/
-/node_modules
-/bower_components
-/typings/
-/src/typings/
-/src/WebBundle/Resources/public/tmp/
-.baseDir.**
-/rez/
-
-/docker_logs.txt
-/web/build.js
+/node_modules/
+/bower_components/

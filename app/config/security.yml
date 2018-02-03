@@ -9,11 +9,10 @@ security:
             id: fos_user.user_provider.username_email
     encoders:
         FOS\UserBundle\Model\UserInterface:
-            algorithm:            pbkdf2
-            hash_algorithm:       sha512
-            encode_as_base64:     true
-            iterations:           1000
-            key_length:           40
+            algorithm:        pbkdf2
+            hash_algorithm:   sha512
+            encode_as_base64: true
+            iterations:       1000
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -38,13 +37,14 @@ security:
             logout:
                 path: /admin/logout
                 target: /admin/login
+                invalidate_session: false
             anonymous: true
         front:
             switch_user: true
             context:     user
             form_login:
-                success_handler: ekyna_user.authentication.success_handler
-                failure_handler: ekyna_user.authentication.failure_handler
+                success_handler: ekyna_user.security.authentication_success_handler
+                failure_handler: ekyna_user.security.authentication_failure_handler
                 provider: fos_userbundle
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
@@ -62,15 +62,17 @@ security:
                 path: fos_user_security_logout
                 target: fos_user_security_login
                 invalidate_session: false
+            oauth:
+                #success_handler: ekyna_commerce.security.oauth_authentication_success_handler
+                resource_owners:
+                    google: "/oauth/login/check-google"
+#                    facebook: "/oauth/login/check-facebook"
+                login_path:     fos_user_security_login
+                failure_path:   fos_user_security_login
+                oauth_user_provider:
+                    service: ekyna_user.oauth.fos_provider
             anonymous: true
     access_control:
-        - { path: "^/account/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: "^/account/login-check", role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: "^/account/register", role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: "^/account/resetting", role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: "^/account.*", role: IS_AUTHENTICATED_REMEMBERED }
-
         - { path: "^/admin/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "^/admin/login-check", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "^/admin.*", role: ROLE_ADMIN }
-#        - { path: "^/admin.*", allow_if: "is_fully_authenticated() and has_role('ROLE_ADMIN')" }

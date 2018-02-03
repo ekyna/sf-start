@@ -1,6 +1,8 @@
 {% extends 'EkynaUserBundle::layout.html.twig' %}
 
 {% block content %}
+{% spaceless %}
+<div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h3>{{ 'ekyna_user.account.registration.confirmed.title'|trans|raw }}</h3>
@@ -17,4 +19,6 @@
             </p>
         </div>
     </div>
+</div>
+{% endspaceless %}
 {% endblock content %}

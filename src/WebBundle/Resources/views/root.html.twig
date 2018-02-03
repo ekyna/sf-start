@@ -1,0 +1,49 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}"{{ cms_document_data() }}{% if app.debug %} data-debug="1"{% endif %}>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    {% block metas %}{% endblock metas %}
+
+    {% block stylesheets -%}
+        <link href="{{ asset('bundles/ekynacore/css/fontawesome.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/ekynacore/css/glyphicons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/ekynasocialbuttons/css/share.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/web/css/main.css') }}" rel="stylesheet" type="text/css" />
+    {%- endblock stylesheets %}
+
+    {{ ui_fonts_stylesheets() }}
+    {{ ui_content_stylesheets() }}
+    {{ ui_forms_stylesheets() }}
+
+    {% include 'EkynaCoreBundle:Ui:ie-fix.html.twig' %}
+
+    {{ require_js(not app.debug) }}
+</head>
+<body{% block body_attr '' %}>
+    {% block body %}{% endblock body %}
+
+    <div id="footer" class="pusher">
+        <div class="container">
+            {{ render_esi(controller('AppBundle:Fragment:footer', {'locale': app.request.locale})) }}
+            {#<div>{{ ui_locale_switcher() }}</div>#}
+        </div>
+    </div>
+
+    {{ cms_cookie_consent() }}
+
+    {% block javascripts -%}
+        <script type="text/javascript">require(['bundles/web/js/main']);</script>
+    {%- endblock javascripts %}
+
+    {% block tracking -%}
+        {{ ekyna_google_tracking() }}
+    {%- endblock tracking %}
+
+</body>
+</html>
+{% endspaceless %}

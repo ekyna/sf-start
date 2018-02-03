@@ -1,15 +1,13 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: ekyna.yml }
+    - { resource: services.yml }
     - { resource: images.yml }
-
-parameters:
-    #fos_elastica.client.class: Ekyna\Bundle\CoreBundle\Elastica\Client
+    - { resource: ekyna.yml }
 
 framework:
     esi:        { enabled: true }
-    translator: { fallback: "%locale%" }
+    translator: { fallbacks: ["%locale%"] }
     secret:      "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -26,17 +24,24 @@ framework:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ['127.0.0.1', '10.0.0.0/8']
+    #trusted_proxies: ['127.0.0.1', '10.0.0.0/8']
+    trusted_proxies: ~
     session:
         handler_id:  snc_redis.session.handler
+        # handler_id set to null will use default session handler from php.ini
+        #handler_id:  session.handler.native_file
+        #save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+        #gc_maxlifetime:  10800
+        #cookie_domain:   "%router.request_context.host%"
         cookie_httponly: false # To false if setting session via XMLHttpRequest
-        cookie_lifetime: 86400
+        cookie_lifetime: 10800 # 3h
     fragments:       { path: /_fragment }
     http_method_override: true
     assets:
-        version: '1.0'
+        version: '1.59'
         version_format: '%%s?v=%%s'
-        base_path: /
+    php_errors:
+        log: true
 
 # Twig Configuration
 twig:
@@ -55,8 +60,10 @@ doctrine:
         charset:  UTF8
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
 
 # Doctrine Cache Configuration
 doctrine_cache:
@@ -66,7 +73,7 @@ doctrine_cache:
         acl_redis_provider:
             predis:
                 host: "%redis.host%"
-                port: 6379
+                port: "%redis.port%"
 
 # Snc Redis Configuration
 snc_redis:
@@ -91,32 +98,63 @@ snc_redis:
         second_level_cache:
             client: cache
             entity_manager: default
-#        metadata_cache:
-#            client: cache
-#            entity_manager: default
-#    monolog:
-#        client: cache
-#        key: monolog
-#    swiftmailer:
-#        client: default
-#        key: swiftmailer
+
+# HWI OAuth
+hwi_oauth:
+    firewall_names: ["front"]
+    connect: ~
+    fosub:
+        username_iterations: 30
+        properties:
+            fake: fake
+    resource_owners:
+        # Report changes in :
+        # - app/config/security.yml line 67: security.firewalls.front.oauth.resource_owners
+        # - app/config/routing.yml (End of file "OAuth resource owners")
+        google:
+            type:           google
+            client_id:      "%oauth.google.id%"
+            client_secret:  "%oauth.google.secret%"
+            scope:          "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            options:
+                display: page
+                prompt: select_account
+#        facebook:
+#            type:           facebook
+#            client_id:      "%oauth.facebook.id%"
+#            client_secret:  "%oauth.facebook.secret%"
+#            scope:          "email, public_profile"
+#            infos_url:      "https://graph.facebook.com/me?fields=id,name,email"
+#            options:
+#                display: page
 
 # FOS User Bundle
 fos_user:
     from_email:
         address:     "%error_report_mail%"
-        sender_name: Sf Start
+        sender_name: Tablette Store
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport:  "%mailer_transport%"
-    host:       "%mailer_host%"
-    port:       "%mailer_port%"
-    auth_mode:  "%mailer_auth_mode%"
-    encryption: "%mailer_encryption%"
-    username:   "%mailer_user%"
-    password:   "%mailer_password%"
-    spool:     { type: memory }
+    default_mailer: default
+    mailers:
+        default:
+            transport:  "%mailer_transport%"
+            host:       "%mailer_host%"
+            port:       "%mailer_port%"
+            auth_mode:  "%mailer_auth_mode%"
+            encryption: "%mailer_encryption%"
+            username:   "%mailer_user%"
+            password:   "%mailer_password%"
+            spool:     { type: memory }
+        report:
+            transport:  "%mailer_transport%"
+            host:       "%mailer_host%"
+            port:       "%mailer_port%"
+            auth_mode:  "%mailer_auth_mode%"
+            encryption: "%mailer_encryption%"
+            username:   "%mailer_user%"
+            password:   "%mailer_password%"
 
 # JMS I18n Routing
 jms_i18n_routing:
@@ -136,4 +174,12 @@ jms_i18n_routing:
 #    pdf:
 #        binary:  "%wkhtmltopdf_path%"
 #    image:
-#        enabled: false
+#        binary:  "%wkhtmltoimage_path%"
+
+# Swap
+#florianv_swap:
+#    providers:
+#        fixer: ~
+#        european_central_bank: ~
+#        #google: ~
+#        #yahoo: ~

@@ -1,7 +1,13 @@
 {% extends "WebBundle:Page:default.html.twig" %}
 
-{% block breadcrumb -%}
-    <div class="container">
-        {% include "EkynaCoreBundle:Ui:flashes.html.twig" %}
-    </div>
-{%- endblock breadcrumb %}
+{% block breadcrumb %}{% endblock breadcrumb %}
+
+{% block containers %}
+{% spaceless %}
+
+    {{ slide_show_render('home') }}
+
+    {{ cms_content() }}
+
+{% endspaceless %}
+{% endblock containers %}

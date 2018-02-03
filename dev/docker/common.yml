@@ -1,82 +1,72 @@
 version: '2'
 
 # Ports:
-# - varnish       : 80 (disabled)
-# - nginx         : 80
-# - php           : 9000 (dev - ssh)
-# - php           : 9010 (dev - xdebug)
-# - mysql         : 9020 (dev)
-# - mysql_test    : 9021 (dev)
-# - elasticsearch : 9030 (dev - http)
-# - se_hub        : 9050 (dev - http)
-# - se_chrome     : 9051 (dev - vnc)
-# - se_chrome     : 9052 (dev - http)
+# - nginx            : 80 (dev)
+# - php              : 9000 (dev - ssh)
+# - php              : 9001 (dev - xdebug)
+# - mysql            : 9010 (dev)
+# - mysql_test       : 9011 (dev)
+# - mysql_migration  : 9012 (dev)
+# - elasticsearch    : 9020 (dev - http)
+# - se_hub           : 9030 (dev - http)
+# - se_chrome        : 9031 (dev - vnc)
+# - se_chrome        : 9032 (dev - http)
+
+# - sftp             : 9040 (tools - ftp)
+# - phpmyadmin       : 9050 (tools - http)
 
 networks:
     default:
         external:
-            name: "${PROJECT_NAME}-network"
+            name: "${COMPOSE_PROJECT_NAME}-network"
 
 volumes:
+    vendor:
+        external:
+            name: "${COMPOSE_PROJECT_NAME}-vendor"
     database:
         external:
-            name: "${PROJECT_NAME}-database"
+            name: "${COMPOSE_PROJECT_NAME}-database"
     elasticsearch:
         external:
-            name: "${PROJECT_NAME}-elasticsearch"
+            name: "${COMPOSE_PROJECT_NAME}-elasticsearch"
 #    database_migration:
 #        external:
-#            name: "${PROJECT_NAME}-migration-database"
+#            name: "${COMPOSE_PROJECT_NAME}-database-migration"
 
 services:
-#    varnish:
-#        container_name: "${PROJECT_NAME}_varnish"
-#        image: ekyna/varnish
-#        depends_on:
-#            - nginx
-#        ports:
-#            - "80:80"
-#        volumes:
-#            - ./config/varnish:/etc/varnish:ro
-#        logging:
-#            driver: "json-file"
-#            options: { max-size: "2m", max-file: "3" }
-#        networks:
-#            default:
-#                aliases:
-#                    - varnish
-
     nginx:
-        container_name: "${PROJECT_NAME}_nginx"
+        container_name: "${COMPOSE_PROJECT_NAME}_nginx"
         image: ekyna/nginx
         environment:
             - HTTPS_METHOD=noredirect
-            - VIRTUAL_PORT=80
             - VIRTUAL_HOST=${VIRTUAL_HOST}
         depends_on:
             - php
         volumes:
             - ../..:/var/www:ro
-            - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx/error:/usr/share/nginx/html:ro
         logging:
             driver: "json-file"
             options: { max-size: "2m", max-file: "3" }
         networks:
             default:
                 aliases:
-                    - "nginx.${PROJECT_NAME}"
+                    - "nginx.${COMPOSE_PROJECT_NAME}"
                     - ${VIRTUAL_HOST}
 
     php:
-        container_name: "${PROJECT_NAME}_php"
+        container_name: "${COMPOSE_PROJECT_NAME}_php"
         depends_on:
             - mysql
             - elasticsearch
             - redis
-#            - mysql_migration
+            #- mysql_migration
         volumes:
+            - vendor:/var/www/vendor
             - ../..:/var/www:rw
-            - ./config/php-fpm.conf:/etc/php7/php-fpm.conf:ro
+            - ./php/php-fpm.conf:/etc/php7/php-fpm.conf:ro
         environment:
             PHP_DOCKER_ACCESS: "1"
         logging:
@@ -85,13 +75,42 @@ services:
         networks:
             default:
                 aliases:
-                    - "php.${PROJECT_NAME}"
+                    - "php.${COMPOSE_PROJECT_NAME}"
+
+    cron:
+        container_name: "${COMPOSE_PROJECT_NAME}_cron"
+        image: ekyna/php7-fpm:7.1.12
+        entrypoint: ''
+        command: "su -c 'crond -f -l info'"
+        depends_on:
+            - mysql
+            - elasticsearch
+            - redis
+        volumes:
+            - vendor:/var/www/vendor:rw
+            - ../..:/var/www:rw
+            - ./php/prod/php.ini:/etc/php7/conf.d/90-custom.ini:ro
+            - ./cron/crontab:/etc/crontabs/www-data:ro
+        logging:
+            driver: "json-file"
+            options: { max-size: "2m", max-file: "3" }
+        networks:
+            default:
+                aliases:
+                    - "cron.${COMPOSE_PROJECT_NAME}"
 
     mysql:
-        container_name: "${PROJECT_NAME}_mysql"
-        image: ekyna/mysql
-        env_file: ./config/mysql.env
+        container_name: "${COMPOSE_PROJECT_NAME}_mysql"
+        image: mysql:5.6
+        environment:
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+            MYSQL_USER: "${MYSQL_USER}"
+            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+            MYSQL_DATABASE: "${MYSQL_DATABASE}"
+        working_dir: /root
         volumes:
+            - ./mysql/mysql_backup.sh:/root/backup.sh:ro
+            - ./mysql/mysql_restore.sh:/root/restore.sh:ro
             - ../../var/backup:/backup:rw
             - database:/var/lib/mysql:rw
         logging:
@@ -100,10 +119,10 @@ services:
         networks:
             default:
                 aliases:
-                    - "mysql.${PROJECT_NAME}"
+                    - "mysql.${COMPOSE_PROJECT_NAME}"
 
 #    mysql_migration:
-#        container_name: "${PROJECT_NAME}_mysql_migration"
+#        container_name: "${COMPOSE_PROJECT_NAME}_mysql_migration"
 #        image: mysql:5.5
 #        environment:
 #            MYSQL_ROOT_PASSWORD: "root"
@@ -112,21 +131,20 @@ services:
 #            MYSQL_DATABASE: "migration"
 #        volumes:
 #            - database_migration:/var/lib/mysql:rw
-#            - ./migration/migration.sql:/docker-entrypoint-initdb.d/db.sql:ro
+#            - ./migration/database.sql:/docker-entrypoint-initdb.d/db.sql:ro
 #        logging:
 #            driver: "json-file"
 #            options: { max-size: "2m", max-file: "3" }
 #        networks:
 #            default:
 #                aliases:
-#                    - mysql_migration
+#                    - "mysql_migration.${COMPOSE_PROJECT_NAME}"
 
     elasticsearch:
-        container_name: "${PROJECT_NAME}_elasticsearch"
-        image: ekyna/elasticsearch
+        container_name: "${COMPOSE_PROJECT_NAME}_elasticsearch"
+        image: elasticsearch:1.7.3
         volumes:
-            - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-            - ../../var/backup:/backup:rw
+            - ./elastic/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
             - elasticsearch:/usr/share/elasticsearch/data:rw
         logging:
             driver: "json-file"
@@ -134,10 +152,10 @@ services:
         networks:
             default:
                 aliases:
-                    - "elasticsearch.${PROJECT_NAME}"
+                    - "elasticsearch.${COMPOSE_PROJECT_NAME}"
 
     redis:
-        container_name: "${PROJECT_NAME}_redis"
+        container_name: "${COMPOSE_PROJECT_NAME}_redis"
         image: redis:3.2.5-alpine
         logging:
             driver: "json-file"
@@ -145,4 +163,4 @@ services:
         networks:
             default:
                 aliases:
-                    - "redis.${PROJECT_NAME}"
+                    - "redis.${COMPOSE_PROJECT_NAME}"

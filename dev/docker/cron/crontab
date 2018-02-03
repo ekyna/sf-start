@@ -1,0 +1,3 @@
+#5 0 * * * php /var/www/bin/console ekyna:commerce:payment:watch --env=prod
+#0 5 * * * php /var/www/bin/console ekyna:commerce:cart:purge --env=prod
+#0 8 * * * php /var/www/bin/console ekyna:product:stock:report --env=prod

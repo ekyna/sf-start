@@ -1,8 +1,0 @@
-<dl class="dl-horizontal">
-    {% if ekyna_user_account_var('username') %}
-        <dt>{{ 'ekyna_core.field.username'|trans }}</dt>
-        <dd>{{ user.username|default('&nbsp;')|raw }}</dd>
-    {% endif %}
-    <dt>{{ 'ekyna_core.field.email'|trans }}</dt>
-    <dd>{{ user.email|default('&nbsp;')|raw }}</dd>
-</dl>

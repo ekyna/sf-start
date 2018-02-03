@@ -1,9 +1,14 @@
-FROM ekyna/nginx:latest
+FROM nginx:stable-alpine
 
 MAINTAINER Etienne Dauvergne <contact@ekyna.com>
 
-RUN addgroup backend -g 1001 \
- && adduser -D -u 1001 -h /var/www -s /sbin/nologin -G backend backend
+ARG user
+ARG uid
+ARG group
+ARG gid
+
+RUN addgroup $group -g $gid \
+ && adduser -D -u $uid -h /var/www -s /bin/bash -G $group $user
 
 WORKDIR /var/www
 
@@ -17,5 +22,5 @@ COPY web/js/app.min.js web/js/app.min.js
 RUN mkdir web/cache \
  && mkdir web/bundles \
  && mkdir web/tinymce \
- && chown -Rf backend:backend /var/www
+ && chown -Rf $user:$group /var/www
 

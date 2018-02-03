@@ -17,11 +17,12 @@ class AppKernel extends Kernel
             new Ekyna\Bundle\AdminBundle\EkynaAdminBundle(),
 
             new Ekyna\Bundle\UserBundle\EkynaUserBundle(),
-            new Ekyna\Bundle\ResourceBundle\EkynaResourceBundle(),
             new Ekyna\Bundle\SettingBundle\EkynaSettingBundle(),
             new Ekyna\Bundle\InstallBundle\EkynaInstallBundle(),
-            new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
+
             new Ekyna\Bundle\CoreBundle\EkynaCoreBundle(),
+            new Ekyna\Bundle\TableBundle\EkynaTableBundle(),
+            new Ekyna\Bundle\ResourceBundle\EkynaResourceBundle(),
             new Ekyna\Bundle\RequireJsBundle\EkynaRequireJsBundle(),
 
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
@@ -38,7 +39,7 @@ class AppKernel extends Kernel
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            //new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
@@ -53,18 +54,21 @@ class AppKernel extends Kernel
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
-            new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
 
             new AppBundle\AppBundle(),
             new WebBundle\WebBundle(),
         ];
 
-        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
-            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
-            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+        if (in_array($this->getEnvironment(), ['dev', 'migr', 'test'], true)) {
+            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+
+            if ($this->getEnvironment() === 'dev') {
+                $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            }
         }
 
         return $bundles;
@@ -87,11 +91,10 @@ class AppKernel extends Kernel
 
     public function getDataDir()
     {
-        if (in_array($this->getEnvironment(), ['prod', 'dev'])) {
-            return dirname(__DIR__) . '/var/data';
+        if ('test' === $this->getEnvironment()) {
+            return dirname(__DIR__) . '/var/test/data';
         }
-
-        return dirname(__DIR__) . '/var/data/__' . $this->getEnvironment();
+        return dirname(__DIR__) . '/var/data';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

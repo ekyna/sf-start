@@ -3,30 +3,32 @@
 # Required vars
 if [ -z ${ROOT_DIR+x} ]; then printf "\e[31mThe 'ROOT_DIR' variable is not defined.\e[0m\n"; exit 1; fi
 if [ -z ${DOCKER_DIR+x} ]; then printf "\e[31mThe 'DOCKER_DIR' variable is not defined.\e[0m\n"; exit 1; fi
-if [ -z ${PROJECT_NAME+x} ]; then printf "\e[31mThe 'PROJECT_NAME' variable is not defined.\e[0m\n"; exit 1; fi
+if [ -z ${COMPOSE_PROJECT_NAME+x} ]; then printf "\e[31mThe 'COMPOSE_PROJECT_NAME' variable is not defined.\e[0m\n"; exit 1; fi
 if [ -z ${REGISTRY+x} ]; then printf "\e[31mThe 'REGISTRY' variable is not defined.\e[0m\n"; exit 1; fi
+if [ -z ${IMAGE_PREFIX+x} ]; then printf "\e[31mThe 'IMAGE_PREFIX' variable is not defined.\e[0m\n"; exit 1; fi
 if [ -z ${LOG_PATH+x} ]; then printf "\e[31mThe 'LOG_PATH' variable is not defined.\e[0m\n"; exit 1; fi
 
 # Vars defaults
 DOCKER_ENV_REGEX="${DOCKER_ENV_REGEX:-^dev|prod$}"
 SYMFONY_ENV_REGEX="${SYMFONY_ENV_REGEX:-^dev|prod|test$}"
-SERVICE_REGEX="${SERVICE_REGEX:-^nginx|php|mysql|mysql_test|elasticsearch|se_hub|se_chrome$}"
+SERVICE_REGEX="${SERVICE_REGEX:-^nginx|php|mysql|mysql_test|elasticsearch$}"
 IMAGE_REGEX="${IMAGE_REGEX:-^nginx|php$}"
 COMMAND_REGEX="${COMMAND_REGEX:-^[a-z0-9_]+(:[a-z0-9_]+)*(\s-((a-z)|(-[a-z-]+(=[a-zA-Z0-9/]+))))*$}"
-BACKUP_REGEX="${BACKUP_REGEX:-^[0-9]\{12\}$}"
+BACKUP_REGEX="^[0-9]{12}$"
+
 
 # ----------------------------- HEADER -----------------------------
 
 Title() {
-    printf "\n\e[1;46m ----- $1 ----- \e[0m\n"
+    printf "\n\e[1;46m --------- $1 --------- \e[0m\n\n"
 }
 
 Warning() {
-    printf "\n\e[31;43m$1\e[0m\n"
+    printf "\e[31;43m$1\e[0m\n"
 }
 
 Help() {
-    printf "\n\e[2m$1\e[0m\n";
+    printf "\e[2m$1\e[0m\n";
 }
 
 Confirm () {
@@ -51,9 +53,7 @@ ClearLogs() {
 
 # ---------------------- PARAMETERS VALIDATION ----------------------
 
-
-
-# ValidateBackupDate [date]
+# ValidateDockerEnvName date
 ValidateBackupDate() {
     if [[ ! $1 =~ $BACKUP_REGEX ]]
     then
@@ -101,19 +101,35 @@ ValidateSymfonyEnvName() {
 # ----------------------------- IMAGE -----------------------------
 
 ImageBuild() {
-   ValidateImageName $1
+    ValidateImageName $1
 
-   printf "Building image \e[1;33m${PROJECT_NAME}/$1\e[0m ... "
+    if [ ! -f ${ROOT_DIR}/build/.env ]
+    then
+        printf "\e[31mFile build/.env is missing.\e[0m\n" && exit 1
+    fi
 
-   docker build -f ${ROOT_DIR}/dockerfile-$1 -t ${REGISTRY}${PROJECT_NAME}/$1:latest .
+    printf "Building image \e[1;33m${REGISTRY}${IMAGE_PREFIX}$1\e[0m ... "
+
+    docker build \
+        --build-arg user=${B_USER} \
+        --build-arg uid=${B_UID} \
+        --build-arg group=${B_GROUP} \
+        --build-arg gid=${B_GID} \
+        -f ${ROOT_DIR}/build/$1 \
+        -t ${REGISTRY}${IMAGE_PREFIX}$1:latest .
 }
 
 ImagePush() {
     ValidateImageName $1
 
-    printf "Pushing image \e[1;33m${PROJECT_NAME}/$1\e[0m ... "
+    if [ ! -f ${ROOT_DIR}/build/.env ]
+    then
+        printf "\e[31mFile build/.env is missing.\e[0m\n" && exit 1
+    fi
 
-    docker push ${REGISTRY}${PROJECT_NAME}/$1:latest
+    printf "Pushing image \e[1;33m${REGISTRY}${IMAGE_PREFIX}$1\e[0m ... "
+
+    docker push ${REGISTRY}${IMAGE_PREFIX}$1:latest
 }
 
 # ----------------------------- NETWORK -----------------------------
@@ -182,7 +198,7 @@ IsUpAndRunning() {
 ComposeUp() {
     ValidateDockerEnvName $1
 
-    IsUpAndRunning "${PROJECT_NAME}_php"
+    IsUpAndRunning "${COMPOSE_PROJECT_NAME}_php"
     if [[ $? -eq 1 ]]
     then
         printf "\e[31mAlready up and running.\e[0m\n"
@@ -278,7 +294,7 @@ ServiceStart() {
     printf "Starting service [$1] \e[1;33m$2\e[0m ... "
 
     cd ${DOCKER_DIR} && \
-        docker-compose -f common.yml -f $1.yml start -d $2 >> ${LOG_PATH} 2>&1 \
+        docker-compose -f common.yml -f $1.yml start $2 >> ${LOG_PATH} 2>&1 \
             && printf "\e[32mdone\e[0m\n" \
             || (printf "\e[31merror\e[0m\n" && exit 1)
 }
@@ -334,21 +350,15 @@ SfCheckParameters() {
 
 Execute() {
     ValidateServiceName $1
-    IsUpAndRunning "${PROJECT_NAME}_$1"
-    if [[ $? -eq 0 ]]
-    then
-        printf "\e[31mEnvironment is not up and running.\e[0m\n"
-        exit 1
-    fi
 
-    printf "Executing [$1] $2\n"
+    printf "Executing $2\n"
 
     printf "\n"
     if [[ "$(uname -s)" = \MINGW* ]]
     then
-        winpty docker exec -it ${PROJECT_NAME}_$1 $2
+        winpty docker exec -it ${COMPOSE_PROJECT_NAME}_$1 $2
     else
-        docker exec -it ${PROJECT_NAME}_$1 $2
+        docker exec -it ${COMPOSE_PROJECT_NAME}_$1 $2
     fi
     printf "\n"
 }
@@ -367,4 +377,42 @@ Run() {
 
 SfCommand() {
     Execute php "php bin/console $1"
+}
+
+Composer() {
+    Execute php "composer $1"
+}
+
+# ----------------------------- TOOLS -----------------------------
+
+# ToolsUp
+ToolsUp() {
+    IsUpAndRunning "${COMPOSE_PROJECT_NAME}_php"
+    if [[ $? -eq 0 ]]
+    then
+        printf "\e[31mStack is not up.\e[0m\n"
+        exit 1
+    fi
+
+    printf "Composing up \e[1;33mtools\e[0m ... "
+    cd ${DOCKER_DIR} && \
+        docker-compose -f tools.yml up -d >> ${LOG_PATH} 2>&1 \
+            && printf "\e[32mdone\e[0m\n" \
+            || (printf "\e[31merror\e[0m\n" && exit 1)
+}
+
+# ToolsDown
+ToolsDown() {
+    IsUpAndRunning "${COMPOSE_PROJECT_NAME}_sftp"
+    if [[ $? -eq 0 ]]
+    then
+        printf "\e[31mTools are not up.\e[0m\n"
+        exit 1
+    fi
+
+    printf "Composing down \e[1;33mtools\e[0m ... "
+    cd ${DOCKER_DIR} && \
+        docker-compose -f tools.yml down -v >> ${LOG_PATH} 2>&1 \
+            && printf "\e[32mdone\e[0m\n" \
+            || (printf "\e[31merror\e[0m\n" && exit 1)
 }

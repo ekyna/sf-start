@@ -1,25 +1,21 @@
 {% extends "WebBundle:Page:default.html.twig" %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                {{ cms_title() }}
-                {{ cms_content() }}
-            </div>
-            <div class="col-md-6">
-                {{ form_start(form) }}
-                {{ bootstrap_set_style('horizontal') }}
-                {{ bootstrap_set_col_size('md') }}
-                <div class="form-body">
-                    {{ form_row(form.name, {'label_col': 4, 'widget_col': 8}) }}
-                    {{ form_row(form.email, {'label_col': 4, 'widget_col': 8}) }}
-                    {{ form_row(form.subject, {'label_col': 4, 'widget_col': 8}) }}
-                    {{ form_row(form.message, {'label_col': 4, 'widget_col': 8}) }}
-                    {{ form_rest(form) }}
-                </div>
-                {{ form_end(form) }}
-            </div>
+{% block containers %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ cms_breadcrumb() }}
+            {{ cms_title() }}
+            {%- include "EkynaCoreBundle:Ui:flashes.html.twig" -%}
         </div>
     </div>
-{% endblock content %}
+    <div class="row">
+        <div class="col-md-6">
+            {{ cms_content() }}
+        </div>
+        <div class="col-md-6">
+            {%- include "WebBundle:Page:_contact_form.html.twig" -%}
+        </div>
+    </div>
+</div>
+{% endblock containers %}

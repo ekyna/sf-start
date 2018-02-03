@@ -4,17 +4,15 @@
     {{ parent() }}
     <div class="container">
         <h2>{{ 'ekyna_cms.wide_search.title'|trans({'{{expression}}': expression}) }}</h2>
-        {% for result in results -%}
-        <div class="search-result" data-score="{{ result.score }}">
-            <h4>
-                <a href="{{ path(result.route, result.parameters) }}">
-                    {{ result.title }}
-                </a>
-            </h4>
-            {%- if result.description|length -%}
-                <p>{{ result.description|raw }}</p>
-            {%- endif %}
-        </div>
-        {%- endfor %}
+        {% for result in results %}
+            <div class="search-result" data-score="{{ result.score }}">
+                <h4>
+                    <a href="{{ path(result.route, result.parameters) }}">
+                        {{ result.title }}
+                    </a>
+                </h4>
+                <p>{% if result.description|length %}{{ result.description|raw }}{% endif %}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock content %}

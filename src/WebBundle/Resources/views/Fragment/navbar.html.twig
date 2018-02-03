@@ -11,22 +11,31 @@
         </div>
         <div class="navbar-collapse collapse">
             {{ cms_menu('main', {'depth': 2, 'style': 'navbar'}) }}
-            <ul class="nav navbar-nav navbar-right">
-                {#<li class="dropdown" id="cart-widget" data-url="{{ path('ekyna_commerce_cart_widget') }}">
+            <ul class="nav navbar-nav navbar-right" id="quick-nav">
+                {#<li class="dropdown" id="cart-widget"
+                    data-url="{{ path('ekyna_commerce_cart_widget') }}">
                     <a href="{{ path('ekyna_commerce_cart_checkout_index') }}" class="dropdown-toggle"
                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">{{ 'web.nav.cart'|trans }}</span>
                         <span class="glyphicon glyphicon-shopping-cart"></span>
-                        <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu"></div>
                 </li>#}
-                <li class="dropdown" id="user-widget" data-url="{{ path('ekyna_user_account_widget') }}">
+                <li class="dropdown" id="user-widget"
+                    data-url="{{ path('ekyna_user_account_widget') }}"
+                    data-status="{{ app.user is not null ? "0" : "1" }}">
                     <a href="{{ path('ekyna_user_account_index') }}" class="dropdown-toggle"
                        data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">{{ 'web.nav.account'|trans }}</span>
                         <span class="glyphicon glyphicon-user"></span>
-                        <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu"></div>
+                </li>
+                <li id="contact-widget">
+                    <a href="{{ path('app_page_contact') }}">
+                        <span class="sr-only">{{ 'web.nav.contact'|trans }}</span>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </a>
                 </li>
             </ul>
             <form action="{{ path('wide_search') }}" method="post" class="navbar-form navbar-right" role="search">

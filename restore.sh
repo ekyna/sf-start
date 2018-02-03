@@ -1,26 +1,10 @@
 #!/bin/bash
 
-if [[ $(cat /etc/passwd | grep 1001) ]]
-then
-    if [[ 1001 != $(id -u) ]]
-    then
-        printf "\e[31mInvalid user.\e[0m\n"
-        exit 1
-    fi
-fi
-
 LOG_PATH="var/logs/restore.log"
 
-DB_PATH="var/backup/database.sql"
 VAR_DATA_PATH="var/backup/var-data.tar"
 WEB_CACHE_PATH="var/backup/web-cache.tar"
 WEB_TINYMCE_PATH="var/backup/web-tinymce.tar"
-
-if [[ ! -f ${DB_PATH} ]]
-then
-    printf "\e[31mDatabase backup file is missing.\e[0m\n"
-    exit 1
-fi
 
 if [[ ! -f ${VAR_DATA_PATH} ]]
 then
@@ -28,33 +12,38 @@ then
     exit 1
 fi
 
-# Database
-printf "Restore \e[1;33mdatabase\e[0m ... "
-php bin/console doctrine:database:import --connection=default --env=prod ${DB_PATH} >> ${LOG_PATH} 2>&1
-if [[ $? -eq 0 ]]
-then
-    printf "\e[32mdone\e[0m\n"
-else
-    printf "\e[31merror\e[0m\n"
-    exit 1
-fi
+Run() {
+    printf "$1 ... "
+    php bin/console $2 --env=prod >> ${LOG_PATH} 2>&1
+    if [[ $? -eq 0 ]]
+    then
+        printf "\e[32mdone\e[0m\n"
+    else
+        printf "\e[31merror\e[0m\n"
+        exit 1
+    fi
+}
 
-# Elasticsearch
-printf "Restore \e[1;33melasticsearch\e[0m ... "
-php bin/console fos:elastica:populate --env=prod >> ${LOG_PATH} 2>&1
-if [[ $? -eq 0 ]]
-then
-    printf "\e[32mdone\e[0m\n"
-else
-    printf "\e[31merror\e[0m\n"
-    exit 1
-fi
+# Apply migrations
+Run "Applying \e[1;33mmigrations\e[0m" "doctrine:migration:migrate --no-interaction --allow-no-migration"
 
-# Filesystem
-printf "Restore \e[1;33mfilesystem\e[0m ... "
-#chmod -Rf +rwx var/data
-rm -Rf var/data
-mkdir var/data
+# Clear caches
+printf "Clearing \e[1;33mcache\e[0m ... "
+php bin/console doctrine:cache:clear-metadata --env=prod >> ${LOG_PATH} 2>&1
+php bin/console doctrine:cache:clear-query --env=prod >> ${LOG_PATH} 2>&1
+php bin/console doctrine:cache:clear-result --env=prod >> ${LOG_PATH} 2>&1
+php bin/console cache:clear --env=prod >> ${LOG_PATH} 2>&1
+printf "\e[32mdone\e[0m\n"
+
+# Restore filesystem
+printf "Restoring \e[1;33mfilesystem\e[0m ... "
+chown -Rf $(id -u -n):$(id -g -n) var/data >> ${LOG_PATH} 2>&1
+chmod -Rf +rwx var/data >> ${LOG_PATH} 2>&1
+rm -Rf var/data/commerce >> ${LOG_PATH} 2>&1
+rm -Rf var/data/ftp >> ${LOG_PATH} 2>&1
+rm -Rf var/data/media >> ${LOG_PATH} 2>&1
+rm -Rf var/data/tmp >> ${LOG_PATH} 2>&1
+rm -Rf var/data/upload >> ${LOG_PATH} 2>&1
 tar -xf ${VAR_DATA_PATH} -C ./var/data >> ${LOG_PATH} 2>&1
 if [[ $? -eq 0 ]]
 then
@@ -64,13 +53,14 @@ else
     exit 1
 fi
 
-# Cache (images)
+# Restore web image cache
 if [[ -f ${WEB_CACHE_PATH} ]]
 then
-    printf "Restore \e[1;33mimages cache\e[0m ... "
-    #chmod -Rf +rwx web/cache
-    rm -Rf web/cache
-    mkdir web/cache
+    printf "Restoring \e[1;33mimages cache\e[0m ... "
+    chown -Rf $(id -u -n):$(id -g -n) web/cache >> ${LOG_PATH} 2>&1
+    chmod -Rf +rwx web/cache >> ${LOG_PATH} 2>&1
+    rm -Rf web/cache >> ${LOG_PATH} 2>&1
+    mkdir web/cache >> ${LOG_PATH} 2>&1
     tar -xf ${WEB_CACHE_PATH} -C ./web/cache >> ${LOG_PATH} 2>&1
     if [[ $? -eq 0 ]]
     then
@@ -81,13 +71,14 @@ then
     fi
 fi
 
-# Tinymce
+# Restore web tinymce images
 if [[ -f ${WEB_TINYMCE_PATH} ]]
 then
-    printf "Restore \e[1;33mtinymce images\e[0m ... "
-    #chmod -Rf +rwx web/tinymce
-    rm -Rf web/tinymce
-    mkdir web/tinymce
+    printf "Restoring \e[1;33mtinymce images\e[0m ... "
+    chown -Rf $(id -u -n):$(id -g -n) web/tinymce >> ${LOG_PATH} 2>&1
+    chmod -Rf +rwx web/tinymce >> ${LOG_PATH} 2>&1
+    rm -Rf web/tinymce >> ${LOG_PATH} 2>&1
+    mkdir web/tinymce >> ${LOG_PATH} 2>&1
     tar -xf ${WEB_TINYMCE_PATH} -C ./web/tinymce >> ${LOG_PATH} 2>&1
     if [[ $? -eq 0 ]]
     then
@@ -98,7 +89,11 @@ then
     fi
 fi
 
-php bin/console assets:install --env=prod >> ${LOG_PATH} 2>&1
+# Install assets
+Run "Installing \e[1;33mbundle assets\e[0m" "assets:install"
+
+# Restore search engine
+Run "Restoring \e[1;33melasticsearch\e[0m" "fos:elastica:populate"
 
 # Clear logs if no error
 rm ${LOG_PATH}
